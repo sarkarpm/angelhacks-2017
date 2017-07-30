@@ -75,7 +75,7 @@ class FoodView extends React.Component {
     // var items = [{name: 'eggs', quantity: 10, unit: 'eggs', price: '0.50'},
     //              {name: 'soup', quantity: 20, unit: 'bowls', price: '1.00'}];
     if (this.state.items.length === 0) {
-        return (<Text>Loading...</Text>)
+        return (<Text>No items</Text>)
     }
     else {
         console.log("ITEMS", this.state.items)
