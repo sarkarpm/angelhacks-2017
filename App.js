@@ -10,6 +10,7 @@ import MapScreen from './frontend/containers/MapView';
 import FoodView from './frontend/containers/FoodView';
 import AllProviders from './frontend/containers/AllProviders';
 import RestaurantPreview from './frontend/containers/UserHome';
+import RestaurantView from './frontend/containers/RestaurantView';
 
 import Ticket from './frontend/containers/Ticket';
 
@@ -35,5 +36,8 @@ export default StackNavigator({
   },
   Ticket: {
   	screen: Ticket
-  }
+  },
+   RestaurantView: {
+     screen: RestaurantView
+   }
 }, {initialRouteName: 'Login'});
