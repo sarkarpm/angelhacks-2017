@@ -11,7 +11,7 @@ import {
     AsyncStorage
 } from 'react-native';
 import axios from 'axios';
-import styles from '../styles';
+import styles from '../formStyles.js';
 import { Location } from 'expo';
 
 class RegisterScreen extends React.Component {
@@ -85,19 +85,20 @@ class RegisterScreen extends React.Component {
         return (
             <View style={ styles.container }>
                 <Text style={ styles.titleFont }>Register</Text>
+                <Text style={styles.pun}>"Don't be posh, join nosh."</Text>
                 <TextInput
-                    style={ [styles.textInput] }
+                    style={styles.textInput}
                     placeholder="Enter your username"
                     onChangeText={ ( text ) => this.setState( { username: text } ) }
                 />
                 <TextInput
-                    style={ [styles.textInput] }
+                    style={styles.textInput}
                     secureTextEntry={ true }
                     placeholder="Enter your password"
                     onChangeText={ ( text ) => this.setState( { password: text } ) }
                 />
                 <TextInput
-                    style={ [styles.textInput] }
+                    style={styles.textInput}
                     secureTextEntry={ true }
                     placeholder="Repeat your password"
                     onChangeText={ ( text ) => this.setState( { passwordRepeat: text } ) }
@@ -106,22 +107,22 @@ class RegisterScreen extends React.Component {
                     admin ?
                         <View>
                             <TextInput
-                                style={ [styles.textInput] }
+                                style={styles.textInput}
                                 placeholder="Restaurant Name"
                                 onChangeText={ ( text ) => this.setState( { name: text } ) }
                             />
                             <TextInput
-                                style={ [styles.textInput] }
+                                style={styles.textInput}
                                 placeholder="Pickup Address"
                                 onChangeText={ ( text ) => this.setState( { location: text } ) }
                             />
                             <TextInput
-                                style={ [styles.textInput] }
+                                style={styles.textInput}
                                 placeholder="Phone Number"
                                 onChangeText={ ( text ) => this.setState( { phone: text } ) }
                             />
                             <TouchableOpacity
-                                style={ [styles.button, styles.buttonPink] }
+                                style={styles.button}
                                 onPress={ () => this.registerRestaurant( this.state.username, this.state.password, this.state.passwordRepeat, this.state.location, this.state.name, this.state.phone ) }
                             >
                                 <Text style={ styles.buttonLabel }>Submit</Text>
@@ -130,19 +131,19 @@ class RegisterScreen extends React.Component {
                         :
                         <View>
                             <TextInput
-                              style={[styles.textInput]}
+                              style={styles.textInput}
                               secureTextEntry={false}
                               placeholder="Enter your first name"
                               onChangeText={(text) => this.setState({firstName: text})}
                             />
                             <TextInput
-                              style={[styles.textInput]}
+                              style={styles.textInput}
                               secureTextEntry={false}
                               placeholder="Enter your last name"
                               onChangeText={(text) => this.setState({lastName: text})}
                             />
                             <TouchableOpacity
-                                style={ [styles.button, styles.buttonPink] }
+                                style={styles.button}
                                 onPress={ () => this.registerUser( this.state.username, this.state.password, this.state.passwordRepeat, this.state.firstName, this.state.lastName ) }
                             >
                                 <Text style={ styles.buttonLabel }>Submit</Text>
@@ -151,7 +152,7 @@ class RegisterScreen extends React.Component {
                 }
 
                 <TouchableOpacity
-                    style={ [styles.button, styles.buttonPink] }
+                    style={styles.buttonOrange}
                     onPress={ () => this.props.navigation.navigate( 'Login' ) }
                 >
                     <Text style={ styles.buttonLabel }>Cancel</Text>
