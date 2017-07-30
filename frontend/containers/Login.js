@@ -31,12 +31,14 @@ class LoginScreen extends React.Component {
         password: password
     })
     .then(response => {
+
       if (response.data.success) {
         console.log("Login response: ", response.data);
         this.props.navigation.navigate('Home', {firstName: response.data.firstName})
       } 
       else {
         Alert.alert(
+
           'Invalid Login',
           'Your username or password is incorrect. Register or try again',
           [{text: 'Dismiss Button'}] // Button

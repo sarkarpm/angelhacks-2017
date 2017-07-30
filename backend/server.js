@@ -9,7 +9,7 @@ const server = require('http').Server(app);
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 
-app.use('/', routes);
+app.use('/', routes)
 
 //handles serialize, deserialize, local strategy
 const passportHelper = require('./passportHelper').passportHelper;

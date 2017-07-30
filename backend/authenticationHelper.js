@@ -1,5 +1,6 @@
 var passport = require( 'passport' );
 var User = require( './models' ).User;
+var FoodProvider = require( './models' ).FoodProvider;
 
 function authenticationHelper( app ) {
     //redirect to documents pages

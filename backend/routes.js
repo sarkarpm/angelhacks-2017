@@ -5,6 +5,7 @@ var User = models.User;
 var FoodProvider = models.FoodProvider;
 var Item = models.Item;
 
+
 router.get( '/providers', ( req, res ) => {
     FoodProvider.find( {}, ( err, providers ) => {
         if ( err ) {
@@ -18,6 +19,7 @@ router.get( '/providers', ( req, res ) => {
         }
     } )
 } )
+
 
 router.post('/geocode', (req, res) => {
     console.log("GEO", req.body.geocode);
