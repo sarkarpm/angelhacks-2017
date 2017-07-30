@@ -52,7 +52,7 @@ class RestaurantPreview extends React.Component {
 		return (
 			<ScrollView>
 			<Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
-			<Text style={styles.welcome}>Welcome You! :)</Text>
+			<Text style={styles.welcome}>Welcome {this.props.firstName} :)</Text>
        {this.state.foodProviders && this.state.foodProviders.map((provider, index) => {
          return <View key={index} style={styles.container}>
 									<View style={styles.restaurant}>

@@ -38,5 +38,5 @@ export default StackNavigator({
   RestaurantView: {
     screen: RestaurantView
   }
-}, {initialRouteName: 'Home'});
+}, {initialRouteName: 'Login'});
 
