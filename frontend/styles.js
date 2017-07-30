@@ -10,26 +10,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 0
   },
-  foodView: {
-    marginTop: 20,
-    marginBottom: 20,
-    display: 'flex',
-    width: win.width,
-    alignItems: 'center'
-  },
   deleted: {
     display: 'none'
-  },
-  foodItem: {
-    width: win.width,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 5,
-    paddingRight: 5,
-    borderBottomColor: '#4AC9BA',
-    borderBottomWidth: 2,
-    display: 'inline-block',
-    position: 'relative'
   },
   addButton: {
     display: 'flex',

@@ -13,7 +13,7 @@ import {
   Modal,
   TouchableHighlight
 } from 'react-native';
-import styles from '../restaurantsStyles.js';
+import styles from '../foodStyles.js';
 
 class FoodItem extends React.Component {
 
