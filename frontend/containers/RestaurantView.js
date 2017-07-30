@@ -35,7 +35,7 @@ class RestaurantView extends React.Component {
     }
 
     addItem() {
-        this.props.navigation.navigate( 'AddItem' );
+        this.props.navigation.navigate( 'AddItem', {restaurantId: this.props.navigation.state.params.id} );
     }
 
     componentWillMount() {

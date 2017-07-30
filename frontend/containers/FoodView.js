@@ -32,20 +32,32 @@ class FoodView extends React.Component {
 
 
   alertMe(name, quantity, price, unit, itemId) {
-    var provider = this.state.provider
-    console.log('JUSTIN BIEBER', provider)
+    var provider = this.state.provider;
+    var userId = this.props.navigation.state.params.userId;
+    console.log('JUSTIN BIEBER', userId);
     Alert.alert(
       `Order: one ${name} from ${provider.name}`,
       'Are you sure you want to place this order?',
       [
         {text: 'Cancel', onPress: () => console.log('Cancelled')},
         {text: 'OK', onPress: () => {
-          axios.post(('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/remove-item'), {
-            itemId: itemId
-          })
-          .then((resp) => {
-             console.log("ITEM WORKED", resp.data.item)
-          })
+        axios.post('http://localhost:3000/newOrder', {
+              userId: userId,
+              provider: provider,
+              name: name,
+              quantity: 1,
+              price: price,
+              unit: unit
+        })
+        .then((resp) => {
+            console.log('DONE BITCHHHH1', resp)
+             return axios.get(('http://localhost:3000/providers/' + itemId + '/remove-item'), {
+                      itemId: itemId
+                    })
+        })
+        .then(resp1 => {
+            console.log('DONE BITCHHHH2', resp1)
+        })
           .catch((err) => {
             console.log('error getting items from food provider', err);
           })
@@ -74,6 +86,7 @@ class FoodView extends React.Component {
 
     // var items = [{name: 'eggs', quantity: 10, unit: 'eggs', price: '0.50'},
     //              {name: 'soup', quantity: 20, unit: 'bowls', price: '1.00'}];
+
     if (this.state.items.length === 0) {
         return (<Text>No items</Text>)
     }

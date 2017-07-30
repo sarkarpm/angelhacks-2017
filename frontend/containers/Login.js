@@ -40,7 +40,7 @@ class LoginScreen extends React.Component {
                 this.props.navigation.navigate('RestaurantView', {name: response.data.name, id: response.data.providerId});
             }
             else {
-                this.props.navigation.navigate('Home', {firstName: response.data.firstName, lastName: response.data.lastName} );
+                this.props.navigation.navigate('Home', {firstName: response.data.firstName, lastName: response.data.lastName, userId: response.data.userId, user: response.data.user} );
             }
         } )
         .catch( err => {
