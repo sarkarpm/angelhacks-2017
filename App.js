@@ -42,5 +42,5 @@ export default StackNavigator({
   UserProfile: {
   	screen: UserProfile
   }
-}, {initialRouteName: 'FoodView'});
+}, {initialRouteName: 'Login'});
 
