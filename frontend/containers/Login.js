@@ -10,6 +10,7 @@ import {
   Button,
   AsyncStorage
 } from 'react-native';
+import axios from 'axios';
 
 
 class LoginScreen extends React.Component {
@@ -24,10 +25,26 @@ class LoginScreen extends React.Component {
     }
   }
   loginUser(username, password) {
-
-  }
-  registerUser() {
-    this.props.navigation.navigate('Register');
+    axios.post('http://localhost:3000/login', {
+        username: username,
+        password: password
+    })
+    .then(response => {
+      console.log("Login response: ", response);
+      return AsyncStorage.setItem('user', JSON.stringify({
+          username: username,
+          password: password
+        })
+      )
+    })
+    .then(() => this.props.navigation.navigate('Home'))
+    .catch(err => {
+      Alert.alert(
+          'Invalid Login',
+          'Your username or password is incorrect. Register or try again',
+          [{text: 'Dismiss Button'}] // Button
+        )
+    });
   }
   render() {
     return (
@@ -47,7 +64,7 @@ class LoginScreen extends React.Component {
         <TouchableOpacity style={[styles.button, styles.button]} onPress={() => this.loginUser(this.state.username, this.state.password)}>
           <Text style={styles.buttonLabel}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.button]} onPress={() => this.registerUser(this.state.username, this.state.password)}>
+        <TouchableOpacity style={[styles.button, styles.button]} onPress={() => this.props.navigation.navigate('Register')}>
           <Text style={styles.buttonLabel}>Register</Text>
         </TouchableOpacity>
       </View>

@@ -10,7 +10,7 @@ import {
   Button,
   AsyncStorage
 } from 'react-native';
-
+import axios from 'axios';
 
 class RegisterScreen extends React.Component {
   static navigationOptions = {
@@ -20,26 +20,29 @@ class RegisterScreen extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      passwordRepeat: ''
     }
   }
-  registerUser() {
-    fetch('https://hohoho-backend.herokuapp.com/register', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
+  registerUser(username, password, passwordRepeat) {
+    if (passwordRepeat !== password) {
+      Alert.alert(
+        'Invalid Register',
+        'Your passwords do not match. Please try again.',
+        [{text: 'Dismiss Button'}] // Button
+      )
+    }
+    else {
+      axios.post('http://localhost:3000/login', {
+        username: username,
+        password: password
       })
-    })
-    .then(response => response.json())
-    .then(responseJson => {
-      console.log(responseJson);
-      this.props.navigation.navigate('Home');
-    })
-    .catch(err => console.log('ERROR: ', err));
+      .then(response => {
+        console.log("Login response: ", response);
+        this.props.navigation.navigate('Login');
+      })
+      .catch(err => console.log(err));
+    }
   }
   render() {
     return (
@@ -56,7 +59,13 @@ class RegisterScreen extends React.Component {
           placeholder="Enter your password"
           onChangeText={(text) => this.setState({password: text})}
         />
-        <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={this.registerUser.bind(this)}>
+        <TextInput
+          style={[styles.textInput]}
+          secureTextEntry={true}
+          placeholder="Repeat your password"
+          onChangeText={(text) => this.setState({passwordRepeat: text})}
+        />
+        <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={() => this.registerUser(this.state.username, this.state.password, this.state.passwordRepeat)}>
           <Text style={styles.buttonLabel}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={() => this.props.navigation.navigate('Login')}>
