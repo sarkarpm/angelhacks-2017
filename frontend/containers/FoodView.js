@@ -17,13 +17,14 @@ import axios from 'axios';
 
 class FoodView extends React.Component {
   static navigationOptions = {
-    title: 'Food View'
+    title: 'Food For Grabs'
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      name: ''
     }
   }
   alertMe(name, quantity, price, unit, itemId) {
@@ -36,18 +37,17 @@ class FoodView extends React.Component {
         {text: 'Cancel', onPress: () => console.log('Cancelled')},
         {text: 'OK', onPress: () => {
         axios.post('http://localhost:3000/newOrder', {
-              userId: userId,
-              provider: provider,
-              name: name,
-              quantity: 1,
-              price: price,
-              unit: unit
+          userId: userId,
+          provider: provider,
+          name: name,
+          quantity: 1,
+          price: price,
+          unit: unit
         })
         .then((resp) => {
-            console.log('DONE BITCHHHH1', resp)
-             return axios.get(('http://localhost:3000/providers/' + itemId + '/remove-item'), {
-                      itemId: itemId
-                    })
+          return axios.get(('http://localhost:3000/providers/' + itemId + '/remove-item'), {
+            itemId: itemId
+          })
         })
         .then(resp1 => {
             console.log('DONE BITCHHHH2', resp1)
@@ -65,14 +65,14 @@ class FoodView extends React.Component {
 
   componentWillMount() {
     console.log('NAVIGATION', this.props.navigation);
-    axios.get('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/items')
+    axios.get('http://localhost:3000/providers/' + {this.props.navigation.state.params.providerId} + '/items')
     .then((resp) => {
         console.log('RESP', resp.data.provider);
         this.setState({
-            items: resp.data.provider.forSale
+            items: resp.data.provider.forSale,
+            name: resp.data.provider.name
         }, () => {
             console.log("DONE");
-            console.log("ITEMsss", this.state.items)
         });
     })
     .catch((err) => {
@@ -87,9 +87,12 @@ class FoodView extends React.Component {
         console.log("ITEMS", this.state.items)
         return (
           <View style={styles.foodView}>
+          <Text style={styles.providerTitle}>{this.state.name}</Text>
+          <View>
            {this.state.items.map((item) => {
              return <FoodItem name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
            })}
+          </View>
         </View>
         ) 
     }
