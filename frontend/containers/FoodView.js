@@ -15,7 +15,7 @@ import FoodItem from '../components/FoodItem';
 import styles from '../styles.js';
 import axios from 'axios';
 
-var prov; 
+var prov;
 
 class FoodView extends React.Component {
   static navigationOptions = {
@@ -50,7 +50,7 @@ class FoodView extends React.Component {
             console.log('error getting items from food provider', err);
           })
           this.props.navigation.navigate('Ticket', {foodName: name, quantity: 1, price: price, units: unit, provider: provider})
-        } 
+        }
         },
       ],
       { cancelable: false }
@@ -74,11 +74,8 @@ class FoodView extends React.Component {
 
     // var items = [{name: 'eggs', quantity: 10, unit: 'eggs', price: '0.50'},
     //              {name: 'soup', quantity: 20, unit: 'bowls', price: '1.00'}];
-    return (
-      
-
     if (this.state.items.length === 0) {
-        return <Text>Loading...</Text>
+        return (<Text>Loading...</Text>)
     }
     else {
         console.log("ITEMS", this.state.items)
