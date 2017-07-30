@@ -3,6 +3,7 @@ import HomeScreen from './frontend/containers/UserHome'
 import { StackNavigator } from 'react-navigation';
 import LoginScreen from './frontend/containers/Login';
 import RegisterScreen from './frontend/containers/Register';
+
 import RestaurantPreview from './frontend/containers/UserHome';
 
 export default StackNavigator({

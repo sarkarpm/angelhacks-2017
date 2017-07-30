@@ -44,6 +44,9 @@ var foodProviderSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  geocode: {
+    type: Object
+  },
   forSale: [{
     type: mongoose.Schema.ObjectId,
     ref: 'Item'
