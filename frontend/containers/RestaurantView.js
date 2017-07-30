@@ -15,7 +15,6 @@ import FoodItem from '../components/FoodItem';
 import styles from '../styles.js';
 import axios from 'axios';
 
-const TEST_RESTAURANT_ID = "597d30f9cbe8a8262bb1d206";
 
 class RestaurantView extends React.Component {
     static navigationOptions = {
@@ -30,7 +29,7 @@ class RestaurantView extends React.Component {
     }
 
     deleteItem( item ) {
-        axios.post( 'http://locolhost:3000/providers/' + TEST_RESTAURANT_ID + "/delete-item",
+        axios.post( 'http://locolhost:3000/providers/' + this.props.navigation.state.params.id + "/delete-item",
             { itemId: item._id }
         );
     }
@@ -39,17 +38,24 @@ class RestaurantView extends React.Component {
         this.props.navigation.navigate( 'AddItem' );
     }
 
-    componentDidMount() {
-        axios.get( 'http://locolhost:3000/providers/' + TEST_RESTAURANT_ID + '/items' )
+    componentWillMount() {
+        axios.get( 'http://locolhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
             .then(( resp ) => {
-                this.setState( { items: resp.data.provider.forSale } )
+                this.setState( { items: resp.data.provider.forSale }, () => {
+                    console.log("STATE: ", this.state)
+                })
             } )
             .catch(( err ) => {
                 console.log( 'error getting items from food provider', err );
             } );
     }
     render() {
-        return (
+        if (this.state.items.length === 0) {
+            return <Text>Loading...</Text>
+        }
+        else {
+            console.log("STATE LOADED," ,this.state);
+            return (
             <View style={ styles.foodView }>
                 { this.state.items.map(( item, index ) => {
                     return <FoodItem
@@ -61,7 +67,9 @@ class RestaurantView extends React.Component {
                 } ) }
                 <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }>+</TouchableOpacity>
             </View>
-        )
+            )
+        }
+        
     }
 }
 

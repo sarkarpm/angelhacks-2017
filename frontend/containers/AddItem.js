@@ -27,7 +27,7 @@ class FoodView extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     console.log('NAVIGATION', this.props.navigation);
     axios.get('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/items')
     .then((resp) => {
