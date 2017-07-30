@@ -6,10 +6,11 @@ import {
 	ListView,
 	Image,
 	Button,
-	TouchableOpacity
+	TouchableOpacity,
+	ScrollView
 } from 'react-native';
 import SearchBar from 'react-native-searchbar'
-import styles from '../styles.js';
+import styles from '../homeStyles.js';
 
 const items = [
 1337,
@@ -54,7 +55,7 @@ class RestaurantPreview extends React.Component {
 
 	render() {
 		return (
-			<View>
+			<ScrollView>
 			<View style={{marginBottom: 100, marginTop: 100}}>
 			{
 				this.state.results.map((result, i) => {
@@ -105,7 +106,71 @@ class RestaurantPreview extends React.Component {
 					</TouchableOpacity>
 				</View>
 			</View>
+			<View style={styles.container}>
+				<View style={styles.restaurant}>			
+					<Image
+					style={styles.image}
+					source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+					/> 
+					<View style={styles.restContainer}>
+						<Text style={styles.title}>Teaspoon</Text>
+						<Text style={styles.description}> Description </Text>
+						<Text style={styles.address}> Address </Text>
+					</View>
+					<TouchableOpacity style={styles.buttonBlue}>
+						<Text style={{textAlign: 'center'}}> View Profile</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
+			<View style={styles.container}>
+				<View style={styles.restaurant}>			
+					<Image
+					style={styles.image}
+					source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+					/> 
+					<View style={styles.restContainer}>
+						<Text style={styles.title}>Teaspoon</Text>
+						<Text style={styles.description}> Description </Text>
+						<Text style={styles.address}> Address </Text>
+					</View>
+					<TouchableOpacity style={styles.buttonBlue}>
+						<Text style={{textAlign: 'center'}}> View Profile</Text>
+					</TouchableOpacity>
+				</View>
+			</View>
+			<View style={styles.container}>
+				<View style={styles.restaurant}>			
+					<Image
+					style={styles.image}
+					source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+					/> 
+					<View style={styles.restContainer}>
+						<Text style={styles.title}>Teaspoon</Text>
+						<Text style={styles.description}> Description </Text>
+						<Text style={styles.address}> Address </Text>
+					</View>
+					<TouchableOpacity style={styles.buttonBlue}>
+						<Text style={{textAlign: 'center'}}> View Profile</Text>
+					</TouchableOpacity>
+				</View>
+			</View>
+			<View style={styles.container}>
+				<View style={styles.restaurant}>			
+					<Image
+					style={styles.image}
+					source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+					/> 
+					<View style={styles.restContainer}>
+						<Text style={styles.title}>Teaspoon</Text>
+						<Text style={styles.description}> Description </Text>
+						<Text style={styles.address}> Address </Text>
+					</View>
+					<TouchableOpacity style={styles.buttonBlue}>
+						<Text style={{textAlign: 'center'}}> View Profile</Text>
+					</TouchableOpacity>
+				</View>
+			</View>
+			</ScrollView>
 			)
 	}
 }
