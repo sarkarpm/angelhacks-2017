@@ -104,17 +104,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
-  x : {
-    display: 'flex',
-    top: -55,
-    right: -350
-  },
-  x1: {
-    display: 'flex',
-    top: -40,
-    right: -350
-  }
-
 })
 
 export default styles;
