@@ -32,11 +32,6 @@ class LoginScreen extends React.Component {
         } )
             .then( response => {
                 console.log( "Login response: ", response );
-                return AsyncStorage.setItem( 'user', JSON.stringify( {
-                    username: username,
-                    password: password
-                } )
-                )
             } )
             .then(() => this.props.navigation.navigate( 'Home' ) )
             .catch( err => {
