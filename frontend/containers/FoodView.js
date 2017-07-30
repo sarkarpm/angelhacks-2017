@@ -24,11 +24,8 @@ class FoodView extends React.Component {
     super(props);
     this.state = {
       items: [],
-<<<<<<< HEAD
-      provider: ''
-=======
+      provider: '',
       name: ''
->>>>>>> f14e5b82f8ef6d34838550198b85e1f8540a133f
     }
   }
   alertMe(name, quantity, price, unit, itemId) {
