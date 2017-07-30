@@ -46,7 +46,7 @@ class RestaurantView extends React.Component {
       console.log('PROVIDER ID 2', this.props.navigation.state.params.id);
         axios.get( 'http://localhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
             .then(( resp ) => {
-              console.log("HERE FORST", this.state);
+              console.log("HERE FiRST", this.state);
                 this.setState( { items: resp.data.provider.forSale }, () => {
                   console.log("HERE", this.state);
                 })

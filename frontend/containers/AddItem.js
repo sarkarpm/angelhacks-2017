@@ -62,11 +62,12 @@ class AddItems extends React.Component {
       unit: this.state.unit,
       price: this.state.price,
       description: this.state.description,
-      store: '597d6184452eaf28eaa797a2'
+      store: this.props.navigation.state.params.providerId
     })
     .then((resp) => {
       console.log('RESP', resp.data.response);
       console.log('SUBMITTED');
+      this.props.navigation.navigate('RestaurantView', {id: this.props.navigation.state.params.providerId});
     })
     .catch((err) => {
       console.log('error posting items to food provider page', err);

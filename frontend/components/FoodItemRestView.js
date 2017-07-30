@@ -17,6 +17,13 @@ import styles from '../styles.js';
 import axios from 'axios';
 
 class FoodItemRestView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleted: false
+    }
+  }
+
   deleteItem(itemId) {
     console.log('provider id', this.props.providerId);
     axios.post('http://localhost:3000/providers/' + this.props.providerId + '/delete-items', {
@@ -25,6 +32,7 @@ class FoodItemRestView extends React.Component {
     .then((resp) => {
       console.log('deleting items');
       console.log('deleted', resp);
+      this.setState({deleted: !this.state.deleted})
     })
     .catch((err) => {
       console.log('error deleting items', err);
@@ -34,7 +42,7 @@ class FoodItemRestView extends React.Component {
   render() {
     console.log('props', this.props);
     return (
-      <View style={styles.foodItem}>
+      <View style={this.state.deleted? styles.deleted : styles.foodItem}>
         {this.props.quantity !== '0' ?
         <View>
           <Text>Item: {this.props.name}</Text>
@@ -46,7 +54,7 @@ class FoodItemRestView extends React.Component {
           <Text>Item: {this.props.name}</Text>
           <Text>Price per item: ${this.props.price}</Text>
         <View style={styles.soldOutRest}><Text style={{color: 'white'}}>Sold out</Text></View>
-        <TouchableOpacity style={styles.x1} onPress={() => this.deleteItem(this.props.key)}><Text style={{color: '#9e9e9e'}}>x</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.x1} onPress={() => this.deleteItem(this.props.itemId)}><Text style={{color: '#9e9e9e'}}>x</Text></TouchableOpacity>
       </View>}
       </View>
     )

@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     width: win.width,
     alignItems: 'center'
   },
+  deleted: {
+    display: 'none'
+  },
   foodItem: {
     width: win.width,
     paddingTop: 10,
