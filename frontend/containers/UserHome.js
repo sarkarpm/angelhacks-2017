@@ -35,18 +35,7 @@ class RestaurantPreview extends React.Component {
 	render() {
 		return (
 			<ScrollView>
-			<View style={{marginBottom: 100, marginTop: 100}}>
-			{
-				this.state.results.map((result, i) => {
-					return (
-						<Text key={i}>
-						{typeof result === 'object' && !(result instanceof Array) ? 'gold object!' : result.toString()}
-						</Text>
-						);
-				})
-			}
-			
-			</View>
+			<Text>{this.props.navigation.state.params.firstName}</Text>
 			<View style={styles.container}>
 				<View style={styles.restaurant}>			
 					<Image

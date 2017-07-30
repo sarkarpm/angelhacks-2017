@@ -21,10 +21,12 @@ class RegisterScreen extends React.Component {
     this.state = {
       username: "",
       password: "",
-      passwordRepeat: ''
+      passwordRepeat: '',
+      firstName: "",
+      lastName: ""
     }
   }
-  registerUser(username, password, passwordRepeat) {
+  registerUser(username, password, passwordRepeat, firstName, lastName) {
     if (passwordRepeat !== password) {
       Alert.alert(
         'Invalid Register',
@@ -33,9 +35,11 @@ class RegisterScreen extends React.Component {
       )
     }
     else {
-      axios.post('http://localhost:3000/login', {
+      axios.post('http://localhost:3000/register', {
         username: username,
-        password: password
+        password: password,
+        firstName: firstName,
+        lastName: lastName
       })
       .then(response => {
         console.log("Login response: ", response);
@@ -48,6 +52,18 @@ class RegisterScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.titleFont}>Register</Text>
+        <TextInput
+          style={[styles.textInput]}
+          secureTextEntry={false}
+          placeholder="Enter your first name"
+          onChangeText={(text) => this.setState({firstName: text})}
+        />
+        <TextInput
+          style={[styles.textInput]}
+          secureTextEntry={false}
+          placeholder="Enter your last name"
+          onChangeText={(text) => this.setState({lastName: text})}
+        />
         <TextInput
           style={[styles.textInput]}
           placeholder="Enter your username"
@@ -65,7 +81,7 @@ class RegisterScreen extends React.Component {
           placeholder="Repeat your password"
           onChangeText={(text) => this.setState({passwordRepeat: text})}
         />
-        <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={() => this.registerUser(this.state.username, this.state.password, this.state.passwordRepeat)}>
+        <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={() => this.registerUser(this.state.username, this.state.password, this.state.passwordRepeat, this.state.firstName, this.state.lastName)}>
           <Text style={styles.buttonLabel}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={() => this.props.navigation.navigate('Login')}>

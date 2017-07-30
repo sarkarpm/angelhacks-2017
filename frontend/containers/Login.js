@@ -21,7 +21,9 @@ class LoginScreen extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      firstName: "",
+      lastName: ""
     }
   }
   loginUser(username, password) {
@@ -30,14 +32,16 @@ class LoginScreen extends React.Component {
         password: password
     })
     .then(response => {
-      console.log("Login response: ", response);
+      console.log("Login response: ", response.data);
+      this.setState({firstName: response.data.firstName});
+      this.setState({lastName: response.data.lastName});
       return AsyncStorage.setItem('user', JSON.stringify({
           username: username,
           password: password
         })
       )
     })
-    .then(() => this.props.navigation.navigate('Home'))
+    .then(() => this.props.navigation.navigate('Home', {firstName: this.state.firstName}))
     .catch(err => {
       Alert.alert(
           'Invalid Login',

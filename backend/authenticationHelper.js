@@ -4,7 +4,17 @@ var User = require( './models' ).User;
 function authenticationHelper( app ) {
     //redirect to documents pages
     app.post( '/login', passport.authenticate( 'local' ), function ( req, res ) {
-        res.json( { success: true, userId: req.user._id } );
+        console.log('username', req.body.username)
+        User.findOne({username: req.body.username}, function(err, usr){
+            console.log('USER', usr);
+            res.json( { 
+                success: true, 
+                userId: req.user._id, 
+                firstName: usr.firstName, 
+                lastName: usr.lastName 
+            } );
+        })
+        
     } );
 
     app.post( '/register', function ( req, res ) {
