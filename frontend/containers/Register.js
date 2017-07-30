@@ -8,11 +8,12 @@ import {
     ListView,
     Alert,
     Button,
-    AsyncStorage
+    AsyncStorage,
 } from 'react-native';
 import axios from 'axios';
 import styles from '../styles';
 import { Location } from 'expo';
+import DatePicker from 'react-native-datepicker'
 
 class RegisterScreen extends React.Component {
     static navigationOptions = {
@@ -27,9 +28,14 @@ class RegisterScreen extends React.Component {
             password: "",
             passwordRepeat: '',
             location: '',
-            phone: ''
+            phone: '',
+            datetimeStart:'2017-07-03 15:00',
+            datetimeEnd:'2017-07-03 15:00'
         }
     }
+
+   
+
     registerUser( username, password, passwordRepeat, firstName, lastName ) {
         if ( passwordRepeat !== password ) {
             Alert.alert(
@@ -70,7 +76,9 @@ class RegisterScreen extends React.Component {
                         location: location,
                         type: 'restaurant',
                         phone: phone,
-                        geocode: geocode[0]
+                        geocode: geocode[0],
+                        start: this.state.datetimeStart,
+                        end: this.state.datetimeEnd
                     } )
                 } )
                 .then( response => {
@@ -120,6 +128,32 @@ class RegisterScreen extends React.Component {
                                 placeholder="Phone Number"
                                 onChangeText={ ( text ) => this.setState( { phone: text } ) }
                             />
+                            <View style={{flexDirection: 'row'}}>
+                            
+                            <DatePicker
+                              style={{width: 200}}
+                              date={this.state.datetimeStart}
+                              mode="datetime"
+                              format="YYYY-MM-DD HH:mm"
+                              confirmBtnText="Confirm"
+                              cancelBtnText="Cancel"
+                              showIcon={false}
+                              onDateChange={(datetime) => {this.setState({datetimeStart: datetime});}}
+                            />
+
+                            <DatePicker
+                              style={{width: 200}}
+                              date={this.state.datetimeEnd}
+                              mode="datetime"
+                              format="YYYY-MM-DD HH:mm"
+                              confirmBtnText="Confirm"
+                              cancelBtnText="Cancel"
+                              showIcon={false}
+                              onDateChange={(datetime) => {this.setState({datetimeEnd: datetime});}}
+                            />
+                            
+                            </View>
+                            <Text>start:{this.state.datetimeStart} end:{this.state.datetimeEnd}</Text>
                             <TouchableOpacity
                                 style={ [styles.button, styles.buttonPink] }
                                 onPress={ () => this.registerRestaurant( this.state.username, this.state.password, this.state.passwordRepeat, this.state.location, this.state.name, this.state.phone ) }

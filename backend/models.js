@@ -80,7 +80,9 @@ var foodProviderSchema = mongoose.Schema( {
     availableNow: {
       type: Boolean,
       required: false
-    }
+    },
+    intervalAvailable: Array
+    
 } );
 
 

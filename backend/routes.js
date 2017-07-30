@@ -27,7 +27,8 @@ router.post( '/providers', ( req, res ) => {
         location: req.body.location,
         phone: req.body.phone,
         geocode: req.body.geocode,
-        type: req.body.type
+        type: req.body.type,
+        intervalAvailable: [{start: req.body.start}, {end: req.body.end}]
     } )
     newProvider.save(( err, providers ) => {
         if ( err ) {

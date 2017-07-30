@@ -68,7 +68,8 @@ class RestaurantPreview extends React.Component {
 											</View>
 										</TouchableOpacity>
 									</View>
-								</View>
+						<Text> Available from: {provider.availableInterval[0].start} until {provider.availableInterval[1].end}</Text>
+				</View>
        })}
 			</ScrollView>
 			)
