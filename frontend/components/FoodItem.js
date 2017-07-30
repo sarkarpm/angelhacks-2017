@@ -16,7 +16,7 @@ import {
 import styles from '../styles.js';
 
 class FoodItem extends React.Component {
-  
+
   render() {
     return (
       <View style={styles.foodItem}>

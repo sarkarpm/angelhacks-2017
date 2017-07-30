@@ -39,37 +39,39 @@ class RestaurantView extends React.Component {
     }
 
     componentWillMount() {
-        axios.get( 'http://locolhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
+      console.log('PROVIDER ID 2', this.props.navigation.state.params.id);
+        axios.get( 'http://localhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
             .then(( resp ) => {
+              console.log("HERE FORST", this.state);
                 this.setState( { items: resp.data.provider.forSale }, () => {
-                    console.log("STATE: ", this.state)
+                  console.log("HERE", this.state);
                 })
-            } )
+            })
             .catch(( err ) => {
                 console.log( 'error getting items from food provider', err );
             } );
     }
     render() {
-        if (this.state.items.length === 0) {
-            return <Text>Loading...</Text>
-        }
-        else {
-            console.log("STATE LOADED," ,this.state);
+            if (this.state.items.length === 0) {
+              return <Text>No Items</Text>
+            }
             return (
             <View style={ styles.foodView }>
-                { this.state.items.map(( item, index ) => {
+                { this.state.items.length !== 0 && this.state.items.map(( item, index ) => {
                     return <FoodItem
                         key={ index }
-                        item={ item }
+                        name={item.name}
+                        quantity={item.quantity}
+                        price={item.price}
+                        unit={item.unit}
                         admin={ true }
                         function={ this.deleteItem.bind( this ) }
                     />
                 } ) }
-                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }>+</TouchableOpacity>
+                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }><Text>+</Text></TouchableOpacity>
             </View>
             )
-        }
-        
+
     }
 }
 
