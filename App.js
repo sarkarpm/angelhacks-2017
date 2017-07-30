@@ -36,4 +36,4 @@ export default StackNavigator({
   Ticket: {
   	screen: Ticket
   }
-}, {initialRouteName: 'Map'});
+}, {initialRouteName: 'Login'});
