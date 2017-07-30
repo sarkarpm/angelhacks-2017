@@ -25,7 +25,7 @@ class FoodItem extends React.Component {
         <Text>Price per item: ${this.props.price}</Text>
         {this.props.quantity === '0' ?
           <View style={styles.soldOutUser}><Text style={{color: 'white'}}>Sold out</Text></View> :
-          <TouchableOpacity style={styles.addButton}>
+          <TouchableOpacity style={styles.addButton} onPress={() => this.props.alertMe(this.props.name, this.props.quantity, this.props.price, this.props.unit, this.props.itemId)}>
             <View><Text style={{color: 'white'}}>+</Text></View>
           </TouchableOpacity>
         }
