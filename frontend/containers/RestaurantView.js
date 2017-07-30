@@ -35,7 +35,11 @@ class RestaurantView extends React.Component {
     }
 
     addItem() {
-        this.props.navigation.navigate( 'AddItem' );
+        this.props.navigation.navigate( 'AddItem', {providerId: this.props.navigation.state.params.id} );
+    }
+
+    allAvailable() {
+      console.log('making all products available');
     }
 
     componentWillMount() {
@@ -60,9 +64,14 @@ class RestaurantView extends React.Component {
         }
         return (
         <View style={ styles.foodView }>
+          <TouchableOpacity style={ styles.allAvailable } onPress={ this.allAvailable.bind( this ) }>
+            <Text style={{color: 'white'}}>Make all available now</Text>
+          </TouchableOpacity>
             { this.state.items.length !== 0 && this.state.items.map(( item, index ) => {
                 return <FoodItemRestView
-                    key={ index }
+                    key={ index}
+                    providerId={this.props.navigation.state.params.id}
+                    itemId={item._id}
                     name={item.name}
                     quantity={item.quantity}
                     price={item.price}

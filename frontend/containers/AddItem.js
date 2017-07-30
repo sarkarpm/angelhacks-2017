@@ -56,7 +56,7 @@ class AddItems extends React.Component {
 
   onPressSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3000/providers/' + '597d6167452eaf28eaa797a1' + '/new-item', {
+    axios.post('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/new-item', {
       name: this.state.name,
       quantity: this.state.quantity,
       unit: this.state.unit,

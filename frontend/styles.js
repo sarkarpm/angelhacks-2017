@@ -89,7 +89,29 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     paddingLeft: 10
+  },
+  allAvailable: {
+    width: 150,
+    height: 40,
+    backgroundColor: '#4AC9BA',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  x : {
+    display: 'flex',
+    top: -55,
+    right: -350
+  },
+  x1: {
+    display: 'flex',
+    top: -40,
+    right: -350
   }
+
 })
 
 export default styles;

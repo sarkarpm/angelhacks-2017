@@ -149,7 +149,7 @@ router.post('/providers/:providerId/new-item', (req, res) => {
   });
 })
 
-router.post( '/providers/:providerId/delete-item', ( req, res ) => {
+router.post( '/providers/:providerId/delete-items', ( req, res ) => {
     Item.findByIdAndRemove( req.body.itemId );
     FoodProvider.findById( req.params.providerId )
         .then( provider => {

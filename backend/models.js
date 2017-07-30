@@ -75,6 +75,10 @@ var foodProviderSchema = mongoose.Schema( {
     phone: {
         type: String,
         required: true
+    },
+    availableNow: {
+      type: Boolean,
+      required: false
     }
 } );
 
