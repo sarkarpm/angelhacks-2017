@@ -14,6 +14,9 @@ export default StackNavigator({
   },
   Register: {
     screen: RegisterScreen
+  },
+  FoodView: {
+    screen: FoodView
   }
   // Home: {
   //   screen: RestaurantPreview
