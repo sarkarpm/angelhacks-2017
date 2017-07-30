@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
   		marginBottom: 10, 
   		borderColor: 'black',
   	},
+  	welcome: {
+    fontSize: 30,
+    textAlign: 'center',
+    margin: 10,
+    fontWeight: 'bold'
+  },
   	image: {
     	width: 100, 
     	height: 100, 

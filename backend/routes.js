@@ -55,6 +55,43 @@ router.get( '/providers/:providerId', ( req, res ) => {
     } )
 } )
 
+router.get( '/users/:userId', ( req, res ) => {
+    User.findById( req.params.userId, ( err, user ) => {
+        if ( err ) {
+            res.json( { success: false, message: err } );
+        }
+        else if ( !user ) {
+            res.json( { success: false, message: "No user found" } );
+        }
+        else {
+            res.json( { success: true, user: user } );
+        }
+    } )
+} )
+
+router.post('/newOrder', ( req, res ) => {
+  console.log('BEYONCE', req.body.userId)
+    User.findById( req.body.userId, ( err, user ) => {
+        if ( err ) {
+          console.log('BEY')
+            res.json( { success: false, message: err } );
+        }
+        else if ( !user ) {
+            res.json( { success: false, message: "No user found" } );
+        }
+        else {
+            user.orders.push({name: req.body.name,
+              quantity: req.body.quantity,
+              price: req.body.price,
+              unit: req.body.unit,
+              provider: req.body.provider
+            })
+            user.save();
+            res.json( { success: true, user: user } );
+        }
+    } )
+} )
+
 router.get( '/providers/:providerId/items', ( req, res ) => {
     FoodProvider.findById( req.params.providerId )
         .populate( 'forSale' )
@@ -102,8 +139,9 @@ router.post( '/providers/:providerId/new-item', ( req, res ) => {
         } );
 } )
 
-router.post('/providers/:providerId/remove-item', (req, res) => {
-  Item.findById(req.body.itemId, (err, item) => {
+router.get('/providers/:itemId/remove-item', (req, res) => {
+  console.log('taylor swift')
+  Item.findById(req.params.itemId, (err, item) => {
     if (err) {
       res.json({success: false, message: err});
     }
