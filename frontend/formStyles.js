@@ -38,18 +38,17 @@ const styles = StyleSheet.create({
     textBig: {
         fontSize: 36,
         textAlign: 'center',
-        margin: 10,
         color: 'white'
     },
     button: {
-        borderRadius: 5,
-        marginTop: 20,
+        marginTop: 30,
         display: 'flex',
         alignItems: 'center',
         width: win.width,
         paddingTop: 15,
         paddingBottom: 15,
         marginTop: 10,
+        marginLeft: 0,
         backgroundColor: '#FFFFAC'
     },
     buttonLabel: {
@@ -62,12 +61,11 @@ const styles = StyleSheet.create({
         width: win.width,
         height: 40,
         backgroundColor: 'white',
-        borderRadius: 5,
-        margin: 5,
-        padding: 10
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+        marginTop: 10
     },
     buttonOrange: {
-        borderRadius: 5,
         display: 'flex',
         alignItems: 'center',
         width: win.width,
