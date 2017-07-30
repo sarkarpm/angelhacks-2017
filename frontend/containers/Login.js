@@ -37,7 +37,7 @@ class LoginScreen extends React.Component {
             console.log("RESPONSE", response);
             if (! response.data.firstName) {
                 console.log("SUCCESS");
-                this.props.navigation.navigate('RestaurantView', {name: response.data.name, id: response.data._id});
+                this.props.navigation.navigate('RestaurantView', {name: response.data.name, id: response.data.providerId});
             }
             else {
                 this.props.navigation.navigate('Home', {firstName: response.data.firstName, lastName: response.data.lastName} );

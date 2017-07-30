@@ -9,11 +9,11 @@ function authenticationHelper( app ) {
         User.findOne({username: req.body.username}, function(err, usr) {
             console.log('USER', usr);
             if (usr) {
-                res.json( { 
-                    success: true, 
-                    userId: req.user._id, 
-                    firstName: usr.firstName, 
-                    lastName: usr.lastName 
+                res.json( {
+                    success: true,
+                    userId: req.user._id,
+                    firstName: usr.firstName,
+                    lastName: usr.lastName
                 } );
             }
             else if (err) {
@@ -21,16 +21,13 @@ function authenticationHelper( app ) {
             }
             else {
                 FoodProvider.findOne({username: req.body.username}, function(err, foodprovider) {
-                    console.log("PROVIDER", foodprovider);
-                    console.log("BODY", req.foodprovider);
-                    console.log("BODY2", req.user);
                     if (err) {
                         console.log("Error provider: ", err)
                     }
                     console.log("Provider provided")
-                    res.json( { 
-                        success: true, 
-                        userId: req.user._id, 
+                    res.json( {
+                        success: true,
+                        providerId: foodprovider._id,
                         name: foodprovider.name
                     } );
                 })

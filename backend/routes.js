@@ -56,6 +56,7 @@ router.get( '/providers/:providerId', ( req, res ) => {
 } )
 
 router.get( '/providers/:providerId/items', ( req, res ) => {
+  console.log('PROVIDER ID', req.params.providerId);
     FoodProvider.findById( req.params.providerId )
         .populate( 'forSale' )
         .exec(( err, provider ) => {
@@ -77,7 +78,8 @@ router.post( '/providers/:providerId/new-item', ( req, res ) => {
         quantity: req.body.quantity,
         unit: req.body.unit,
         price: req.body.price,
-        description: req.body.description
+        description: req.body.description,
+        store: req.params.providerId
     } )
     newItem.save()
         .then( item => {
