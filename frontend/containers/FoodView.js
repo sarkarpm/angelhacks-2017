@@ -30,15 +30,27 @@ class FoodView extends React.Component {
     }
   }
 
-  alertMe(name, quantity, price, unit) {
+  alertMe(name, quantity, price, unit, itemId) {
     var provider = this.state.provider
     console.log('JUSTIN BIEBER', provider)
     Alert.alert(
-      `Order: ${quantity} ${name} from ${provider.name}`,
+      `Order: one ${name} from ${provider.name}`,
       'Are you sure you want to place this order?',
       [
         {text: 'Cancel', onPress: () => console.log('Cancelled')},
-        {text: 'OK', onPress: () => this.props.navigation.navigate('Ticket', {foodName: name, quantity: quantity, price: price, units: unit, provider: provider})},
+        {text: 'OK', onPress: () => {
+          axios.post(('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/remove-item'), {
+            itemId: itemId
+          })
+          .then((resp) => {
+             console.log("ITEM WORKED", resp.data.item)
+          })
+          .catch((err) => {
+            console.log('error getting items from food provider', err);
+          })
+          this.props.navigation.navigate('Ticket', {foodName: name, quantity: 1, price: price, units: unit, provider: provider})
+        } 
+        },
       ],
       { cancelable: false }
     )
@@ -62,7 +74,7 @@ class FoodView extends React.Component {
     return (
       <View style={styles.foodView}>
        {this.state.items.map((item, index) => {
-         return <FoodItem key={index} alertMe={this.alertMe.bind(this)} name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
+         return <FoodItem key={index} alertMe={this.alertMe.bind(this)} name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} itemId={item._id} />
        })}
       </View>
     )

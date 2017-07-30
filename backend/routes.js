@@ -82,6 +82,22 @@ router.get('/providers/:providerId/items', (req, res) => {
   })
 })
 
+router.post('/providers/:providerId/remove-item', (req, res) => {
+  Item.findById(req.body.itemId, (err, item) => {
+    if (err) {
+      res.json({success: false, message: err});
+    }
+    else if (!item) {
+      res.json({success: false, message: "No item found"});
+    }
+    else {
+      item.quantity = item.quantity - 1;
+      item.save();
+      res.json({success: true, item: item});
+    }
+  })
+})
+
 router.post('/providers/:providerId/new-item', (req, res) => {
   var newItem = new Item({
     name: req.body.name,
