@@ -15,7 +15,7 @@ var itemSchema = mongoose.Schema({
     required: true
   },
   quantity: {
-    type: Number,
+    type: String,
     required: true
   },
   unit: {
@@ -28,6 +28,10 @@ var itemSchema = mongoose.Schema({
   },
   description: {
     type: String
+  },
+  store: {
+    type: String,
+    required: true
   }
 })
 
@@ -47,9 +51,6 @@ var foodProviderSchema = mongoose.Schema({
   type: {
     type: String,
     required: true
-  },
-  geocode: {
-    type: Object
   },
   forSale: [{
     type: mongoose.Schema.ObjectId,
