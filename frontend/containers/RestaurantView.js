@@ -15,7 +15,7 @@ import FoodItem from '../components/FoodItem';
 import styles from '../styles.js';
 import axios from 'axios';
 
-const TEST_RESTAURANT_ID = "597d30f9cbe8a8262bb1d206";
+const TEST_RESTAURANT_ID = "597d6167452eaf28eaa797a1";
 
 class RestaurantView extends React.Component {
     static navigationOptions = {
@@ -59,7 +59,7 @@ class RestaurantView extends React.Component {
                         function={ this.deleteItem.bind( this ) }
                     />
                 } ) }
-                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }>+</TouchableOpacity>
+                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }><Text>+</Text></TouchableOpacity>
             </View>
         )
     }

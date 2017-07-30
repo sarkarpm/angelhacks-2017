@@ -34,7 +34,7 @@ const styles = StyleSheet.create( {
         position: 'absolute',
         right: 20,
         top: 16
-    }
+    },
   titleFont: {
         color: 'black',
         fontSize: 32,

@@ -47,7 +47,7 @@ class RegisterScreen extends React.Component {
                 .catch( err => console.log( err ) );
         }
     }
-    registerRestaurant( username, password, passwordRepeat, location ) {
+    registerRestaurant( username, password, passwordRepeat, location, name ) {
         if ( passwordRepeat !== password ) {
             Alert.alert(
                 'Invalid Register',
@@ -57,19 +57,21 @@ class RegisterScreen extends React.Component {
         }
         else {
             Location.geocodeAsync( location )
-                .then( loc => {
-                    return axios.post( 'http://localhost:3000/providers', {
-                        name: username,
-                        password: password,
-                        type: 'restaurant',
-                        geocode: loc
-                    } )
+            .then( loc => {
+                console.log("LOC", loc);
+                return axios.post( 'http://localhost:3000/providers', {
+                    name: name,
+                    username: username,
+                    password: password,
+                    type: 'restaurant',
+                    geocode: loc
                 } )
-                .then( response => {
-                    console.log( "Login response: ", response );
-                    this.props.navigation.navigate( 'Login' );
-                } )
-                .catch( err => console.log( err ) );
+            } )
+            .then( response => {
+                console.log( "Login response: ", response );
+                this.props.navigation.navigate( 'Login' );
+            } )
+            .catch( err => console.log( err ) );
         }
     }
     render() {
@@ -96,20 +98,24 @@ class RegisterScreen extends React.Component {
                 />
                 {
                     admin ?
-                        <div>
+                        <View>
                             <TextInput
                                 style={ [styles.textInput] }
-                                secureTextEntry={ true }
+                                placeholder="Restaurant Name"
+                                onChangeText={ ( text ) => this.setState( { name: text } ) }
+                            />
+                            <TextInput
+                                style={ [styles.textInput] }
                                 placeholder="Pickup Address"
                                 onChangeText={ ( text ) => this.setState( { location: text } ) }
                             />
                             <TouchableOpacity
                                 style={ [styles.button, styles.buttonPink] }
-                                onPress={ () => this.registerRestaurant( this.state.username, this.state.password, this.state.passwordRepeat, this.state.location ) }
+                                onPress={ () => this.registerRestaurant( this.state.username, this.state.password, this.state.passwordRepeat, this.state.location, this.state.name ) }
                             >
                                 <Text style={ styles.buttonLabel }>Submit</Text>
                             </TouchableOpacity>
-                        </div>
+                        </View>
                         :
                         <TouchableOpacity
                             style={ [styles.button, styles.buttonPink] }

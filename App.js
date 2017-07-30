@@ -4,6 +4,8 @@ import { StackNavigator } from 'react-navigation';
 import LoginScreen from './frontend/containers/Login';
 import RegisterScreen from './frontend/containers/Register';
 import RestaurantPreview from './frontend/containers/UserHome';
+import RestaurantView from './frontend/containers/RestaurantView';
+
 
 export default StackNavigator({
   Login: {
@@ -14,6 +16,9 @@ export default StackNavigator({
   },
   Home: {
     screen: RestaurantPreview
+  },
+  RestaurantView: {
+    screen: RestaurantView
   }
 }, {initialRouteName: 'Login'});
 
