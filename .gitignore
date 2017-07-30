@@ -54,7 +54,8 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# Remove expo files
+.expo/*
+
 # dotenv environment variables file
 .env
-env.sh
-.expo/
