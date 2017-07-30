@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 
 
-class LoginScreen extends React.Component {
+class RegisterScreen extends React.Component {
   static navigationOptions = {
-    title: 'Login'
+    title: 'Register'
   };
   constructor(props) {
     super(props);
@@ -23,16 +23,28 @@ class LoginScreen extends React.Component {
       password: ""
     }
   }
-  loginUser(username, password) {
-
-  }
   registerUser() {
-    this.props.navigation.navigate('Register');
+    fetch('https://hohoho-backend.herokuapp.com/register', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log(responseJson);
+      this.props.navigation.navigate('Home');
+    })
+    .catch(err => console.log('ERROR: ', err));
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titleFont}>Welcome</Text>
+        <Text style={styles.titleFont}>Register</Text>
         <TextInput
           style={[styles.textInput]}
           placeholder="Enter your username"
@@ -44,16 +56,17 @@ class LoginScreen extends React.Component {
           placeholder="Enter your password"
           onChangeText={(text) => this.setState({password: text})}
         />
-        <TouchableOpacity style={[styles.button, styles.button]} onPress={() => this.loginUser(this.state.username, this.state.password)}>
-          <Text style={styles.buttonLabel}>Login</Text>
+        <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={this.registerUser.bind(this)}>
+          <Text style={styles.buttonLabel}>Submit</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.button]} onPress={() => this.registerUser(this.state.username, this.state.password)}>
-          <Text style={styles.buttonLabel}>Register</Text>
+        <TouchableOpacity style={[styles.button, styles.buttonPink]} onPress={() => this.props.navigation.navigate('Login')}>
+          <Text style={styles.buttonLabel}>Cancel</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
+
 const styles = StyleSheet.create({
   titleFont: {
     color: 'black',
@@ -135,6 +148,4 @@ const styles = StyleSheet.create({
     color: '#7FDBD3'
   }
 });
-
-
-export default LoginScreen;
+export default RegisterScreen;
