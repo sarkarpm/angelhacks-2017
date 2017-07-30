@@ -18,27 +18,6 @@ const items = [
 [ 4, 2, 'tree' ],
 ];
 
-
-
-// class HomeScreen extends React.Component {
-// 	constructor() {
-// 		super();
-// 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-// 		this.state = {
-// 			dataSource: ['ShareTea', 'Moo']
-// 		};
-// 	}
-
-// 	render() {
-// 		return (
-// 			<View style={styles.container}>
-// 			<Text style={[styles.textBig, {color: '#53E0CF'}]}>boop the snoot</Text>
-// 			{this.state.dataSource.map(items => {<Text> items </Text>})}
-// 			</View>
-// 			)
-// 	}
-// }
-
 class RestaurantPreview extends React.Component {
 	constructor(props) {
 		super(props);
@@ -68,12 +47,6 @@ class RestaurantPreview extends React.Component {
 			}
 			
 			</View>
-			<SearchBar
-			ref={'ref'}
-			data={items}
-			handleResults={this._handleResults}
-			showOnLoad
-			/>
 			<View style={styles.container}>
 				<View style={styles.restaurant}>			
 					<Image
