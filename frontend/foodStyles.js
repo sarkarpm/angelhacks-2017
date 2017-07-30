@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: win.width,
     alignItems: 'center'
-  }
+  },
   foodItem: {
     width: win.width,
     paddingTop: 10,

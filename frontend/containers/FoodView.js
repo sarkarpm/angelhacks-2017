@@ -12,7 +12,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import FoodItem from '../components/FoodItem';
-import styles from '../styles.js';
+import styles from '../foodStyles.js';
 import axios from 'axios';
 
 class FoodView extends React.Component {
@@ -29,7 +29,6 @@ class FoodView extends React.Component {
   alertMe(name, quantity, price, unit, itemId) {
     var provider = this.state.provider;
     var userId = this.props.navigation.state.params.userId;
-    console.log('JUSTIN BIEBER', userId);
     Alert.alert(
       `Order: one ${name} from ${provider.name}`,
       'Are you sure you want to place this order?',
@@ -73,6 +72,7 @@ class FoodView extends React.Component {
             items: resp.data.provider.forSale
         }, () => {
             console.log("DONE");
+            console.log("ITEMsss", this.state.items)
         });
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ class FoodView extends React.Component {
   }
   render() {
     if (this.state.items.length === 0) {
-        return <Text>Loading...</Text>
+        return <Text style={styles.noItems}>No Items</Text>
     }
     else {
         console.log("ITEMS", this.state.items)
