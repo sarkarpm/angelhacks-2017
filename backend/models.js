@@ -9,27 +9,31 @@ var userSchema = mongoose.Schema( {
     swipes: Number
 } );
 
-var itemSchema = mongoose.Schema( {
-    name: {
-        type: String,
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true
-    },
-    unit: {
-        type: String,
-        required: false
-    },
-    price: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String
-    }
-} )
+var itemSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  quantity: {
+    type: String,
+    required: true
+  },
+  unit: {
+    type: String,
+    required: false
+  },
+  price: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String
+  },
+  store: {
+    type: String,
+    required: true
+  }
+})
 
 var foodProviderSchema = mongoose.Schema( {
     name: {
@@ -72,7 +76,6 @@ var foodProviderSchema = mongoose.Schema( {
         type: String,
         required: true
     }
-
 } );
 
 
