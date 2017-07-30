@@ -15,6 +15,8 @@ import FoodItem from '../components/FoodItem';
 import styles from '../styles.js';
 import axios from 'axios';
 
+var prov; 
+
 class FoodView extends React.Component {
   static navigationOptions = {
     title: 'Food View'
@@ -23,16 +25,32 @@ class FoodView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      provider: ''
     }
   }
 
-  componentDidMount() {
-    console.log('NAVIGATION', this.props.navigation);
+  alertMe(name, quantity, price, unit) {
+    var provider = this.state.provider
+    console.log('JUSTIN BIEBER', provider)
+    Alert.alert(
+      `Order: ${quantity} ${name} from ${provider.name}`,
+      'Are you sure you want to place this order?',
+      [
+        {text: 'Cancel', onPress: () => console.log('Cancelled')},
+        {text: 'OK', onPress: () => this.props.navigation.navigate('Ticket', {foodName: name, quantity: quantity, price: price, units: unit, provider: provider})},
+      ],
+      { cancelable: false }
+    )
+  }
+
+  componentWillMount() {
+
     axios.get('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/items')
     .then((resp) => {
       console.log('RESP', resp.data.provider);
-      this.setState({items: resp.data.provider.forSale})
+      this.setState({items: resp.data.provider.forSale, provider: resp.data.provider})
+        console.log("UIREGHAUIRGU", this.state.provider)
     })
     .catch((err) => {
       console.log('error getting items from food provider', err);
@@ -44,7 +62,7 @@ class FoodView extends React.Component {
     return (
       <View style={styles.foodView}>
        {this.state.items.map((item, index) => {
-         return <FoodItem key={index} name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
+         return <FoodItem key={index} alertMe={this.alertMe.bind(this)} name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
        })}
       </View>
     )
