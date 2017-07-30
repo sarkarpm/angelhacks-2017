@@ -8,7 +8,8 @@ import {
   ListView,
   Alert,
   Button,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from 'react-native';
 import axios from 'axios';
 
@@ -21,9 +22,7 @@ class LoginScreen extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: "",
-      firstName: "",
-      lastName: ""
+      password: ""
     }
   }
   loginUser(username, password) {
@@ -32,22 +31,22 @@ class LoginScreen extends React.Component {
         password: password
     })
     .then(response => {
-      //console.log("Login response: ", response.data);
-      this.setState({firstName: response.data.firstName});
-      this.setState({lastName: response.data.lastName});
-      return AsyncStorage.setItem('user', JSON.stringify({
-          username: username,
-          password: password
-        })
-      )
-    })
-    .then(() => this.props.navigation.navigate('Home', {firstName: this.state.firstName}))
-    .catch(err => {
-      Alert.alert(
+
+      if (response.data.success) {
+        console.log("Login response: ", response.data);
+        this.props.navigation.navigate('Home', {firstName: response.data.firstName})
+      } 
+      else {
+        Alert.alert(
+
           'Invalid Login',
           'Your username or password is incorrect. Register or try again',
           [{text: 'Dismiss Button'}] // Button
         )
+      }
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
   render() {
