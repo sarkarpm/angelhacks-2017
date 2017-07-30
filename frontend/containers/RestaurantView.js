@@ -35,14 +35,18 @@ class RestaurantView extends React.Component {
     }
 
     addItem() {
-        this.props.navigation.navigate( 'AddItem', {restaurantId: this.props.navigation.state.params.id} );
+        this.props.navigation.navigate( 'AddItem', {providerId: this.props.navigation.state.params.id} );
+    }
+
+    allAvailable() {
+      console.log('making all products available');
     }
 
     componentWillMount() {
       console.log('PROVIDER ID 2', this.props.navigation.state.params.id);
         axios.get( 'http://localhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
             .then(( resp ) => {
-              console.log("HERE FORST", this.state);
+              console.log("HERE FiRST", this.state);
                 this.setState( { items: resp.data.provider.forSale }, () => {
                   console.log("HERE", this.state);
                 })
@@ -60,9 +64,14 @@ class RestaurantView extends React.Component {
         }
         return (
         <View style={ styles.foodView }>
+          <TouchableOpacity style={ styles.allAvailable } onPress={ this.allAvailable.bind( this ) }>
+            <Text style={{color: 'white'}}>Make all available now</Text>
+          </TouchableOpacity>
             { this.state.items.length !== 0 && this.state.items.map(( item, index ) => {
                 return <FoodItemRestView
-                    key={ index }
+                    key={ index}
+                    providerId={this.props.navigation.state.params.id}
+                    itemId={item._id}
                     name={item.name}
                     quantity={item.quantity}
                     price={item.price}
