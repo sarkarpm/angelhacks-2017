@@ -9,5 +9,8 @@ export default StackNavigator({
   },
   Register: {
     screen: RegisterScreen
+  },
+  FoodView: {
+    screen: FoodView
   }
 }, {initialRouteName: 'Login'});

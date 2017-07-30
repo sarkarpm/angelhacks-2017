@@ -5,7 +5,8 @@ var userSchema = mongoose.Schema( {
   username: String,
   password: String,
   firstName: String,
-  lastName: String
+  lastName: String,
+  swipes: Number
 } );
 
 var itemSchema = mongoose.Schema({
@@ -18,7 +19,8 @@ var itemSchema = mongoose.Schema({
     required: true
   },
   unit: {
-    type: Number
+    type: String,
+    required: false
   },
   price: {
     type: String,
@@ -56,5 +58,5 @@ var FoodProvider = mongoose.model('FoodProvider', foodProviderSchema);
 module.exports = {
     User: User,
     Item: Item,
-    FoodProvider: FoodProvider,,
+    FoodProvider: FoodProvider,
 };
