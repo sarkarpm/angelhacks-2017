@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19002,
-  "packagerPid": 73817,
-  "expoServerNgrokUrl": "https://km-nzi.mnto.angelhacks-2017.exp.direct",
-  "packagerNgrokUrl": "https://packager.km-nzi.mnto.angelhacks-2017.exp.direct",
-  "ngrokPid": 73828
+  "packagerPort": 19003,
+  "packagerPid": 74833,
+  "expoServerNgrokUrl": "https://ne-zgd.mnto.angelhacks-2017.exp.direct",
+  "packagerNgrokUrl": "https://packager.ne-zgd.mnto.angelhacks-2017.exp.direct",
+  "ngrokPid": 74847
 }
