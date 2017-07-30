@@ -11,7 +11,7 @@ import FoodView from './frontend/containers/FoodView';
 import RestaurantPreview from './frontend/containers/UserHome';
 import RestaurantView from './frontend/containers/RestaurantView';
 import Ticket from './frontend/containers/Ticket';
-
+import AddItem from './frontend/containers/AddItem';
 
 export default StackNavigator({
   Login: {
@@ -32,7 +32,11 @@ export default StackNavigator({
   Ticket: {
   	screen: Ticket
   },
-   RestaurantView: {
-     screen: RestaurantView
-   }
+  AddItem: {
+    screen: AddItem
+  },
+  RestaurantView: {
+    screen: RestaurantView
+  }
 }, {initialRouteName: 'Login'});
+
