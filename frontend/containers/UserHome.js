@@ -52,8 +52,6 @@ class RestaurantPreview extends React.Component {
 		return (
 			<ScrollView>
 			<Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
-			<View style={{marginBottom: 100, marginTop: 100}}>
-			</View>
 			<Text style={styles.welcome}>Welcome {this.props.navigation.state.params.firstName}! :)</Text>
        {this.state.foodProviders && this.state.foodProviders.map((provider, index) => {
          return <View style={styles.container}>
@@ -67,7 +65,7 @@ class RestaurantPreview extends React.Component {
 						<Text style={styles.description}> {provider.type} </Text>
 						<Text style={styles.address}> {provider.address} </Text>
 					</View>
-					<TouchableOpacity style={styles.buttonBlue} onPress={() => this.props.navigation.navigate('Food View', {providerId: provider._id})}>
+					<TouchableOpacity style={styles.buttonBlue} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id})}>
 						<Text style={{textAlign: 'center'}}> View Profile</Text>
 					</TouchableOpacity>
 				</View>
