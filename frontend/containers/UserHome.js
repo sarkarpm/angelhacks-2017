@@ -62,8 +62,9 @@ class RestaurantPreview extends React.Component {
 					/>
 					<View style={styles.restContainer}>
 						<Text style={styles.title}>{provider.name}</Text>
-						<Text style={styles.description}> {provider.type} </Text>
-						<Text style={styles.address}> {provider.address} </Text>
+						<Text style={styles.description}>{provider.type}</Text>
+						<Text style={styles.address}>{provider.location}</Text>
+						<Text style={styles.address}>{provider.description}</Text>
 					</View>
 					<TouchableOpacity style={styles.buttonBlue} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id})}>
 						<Text style={{textAlign: 'center'}}> View Profile</Text>
