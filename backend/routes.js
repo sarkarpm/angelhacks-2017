@@ -23,7 +23,11 @@ router.get( '/providers', ( req, res ) => {
 router.post( '/providers', ( req, res ) => {
     var newProvider = new FoodProvider( {
         name: req.body.name,
+        username: req.body.username,
+        password: req.body.password,
         location: req.body.location,
+        phone: req.body.phone,
+        geocode: req.body.geocode,
         type: req.body.type
     } )
     newProvider.save(( err, providers ) => {
@@ -32,6 +36,7 @@ router.post( '/providers', ( req, res ) => {
             res.json( { success: false, message: err } );
         }
         else {
+            console.log("posted restaurant")
             res.json( { success: true, providers: providers } );
         }
     } )

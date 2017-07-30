@@ -8,8 +8,8 @@ import LoginScreen from './frontend/containers/Login';
 import RegisterScreen from './frontend/containers/Register';
 import MapScreen from './frontend/containers/MapView';
 import FoodView from './frontend/containers/FoodView';
-import AllProviders from './frontend/containers/AllProviders';
 import RestaurantPreview from './frontend/containers/UserHome';
+import RestaurantView from './frontend/containers/RestaurantView';
 import Ticket from './frontend/containers/Ticket';
 import AddItem from './frontend/containers/AddItem';
 
@@ -23,9 +23,6 @@ export default StackNavigator({
   FoodView: {
     screen: FoodView
   },
-  AllProviders: {
-    screen: AllProviders,
-  },
   Home: {
     screen: RestaurantPreview
   },
@@ -37,5 +34,9 @@ export default StackNavigator({
   },
   AddItem: {
     screen: AddItem
+  },
+  RestaurantView: {
+    screen: RestaurantView
   }
-}, {initialRouteName: 'AddItem'});
+}, {initialRouteName: 'Login'});
+
