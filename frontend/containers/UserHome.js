@@ -60,7 +60,7 @@ class RestaurantPreview extends React.Component {
 											style={styles.image}
 											source={{uri: provider.imgURL}}
 										/>
-										<TouchableOpacity style={styles.infoContainer} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id})}>
+										<TouchableOpacity style={styles.infoContainer} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id, userId: this.props.navigation.state.params.userId})}>
 											<View style={styles.restContainer}>
 												<Text style={[styles.title, {fontFamily: 'Avenir'}]}>{provider.name}</Text>
 												<Text style={[styles.description, {fontFamily: 'Avenir'}]}>{provider.type}</Text>
