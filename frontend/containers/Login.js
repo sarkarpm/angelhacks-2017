@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#FFFFFF',
-    fontFamily: 'Avenir',
     fontWeight: 'bold'
   },
   welcome: {
