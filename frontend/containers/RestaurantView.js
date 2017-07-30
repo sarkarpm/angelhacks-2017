@@ -11,8 +11,8 @@ import {
     Dimensions,
     AsyncStorage
 } from 'react-native';
-import FoodItem from '../components/FoodItem';
-import styles from '../styles.js';
+import FoodItemRestView from '../components/FoodItemRestView';
+import styles from '../RestaurantViewStyles.js';
 import axios from 'axios';
 
 
@@ -40,45 +40,33 @@ class RestaurantView extends React.Component {
 
     allAvailable() {
       console.log('making all products available');
+
     }
 
     componentWillMount() {
-        axios.get( 'http://locolhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
+      console.log('PROVIDER ID 2', this.props.navigation.state.params.id);
+        axios.get( 'http://localhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
             .then(( resp ) => {
               console.log("HERE FiRST", this.state);
                 this.setState( { items: resp.data.provider.forSale }, () => {
-                    console.log("STATE: ", this.state)
+                  console.log("HERE", this.state);
                 })
-            } )
+            })
             .catch(( err ) => {
                 console.log( 'error getting items from food provider', err );
             } );
     }
     render() {
         if (this.state.items.length === 0) {
-            return <Text>Loading...</Text>
+          return (<View style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{fontFamily: 'Avenir'}}>No Items :(</Text>
+            <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }><Text>+</Text></TouchableOpacity>
+          </View>)
         }
-        else {
-            console.log("STATE LOADED," ,this.state);
-            return (
-            <View style={ styles.foodView }>
-                { this.state.items.map(( item, index ) => {
-                    return <FoodItem
-                        key={ index }
-                        item={ item }
-                        admin={ true }
-                        function={ this.deleteItem.bind( this ) }
-                    />
-                } ) }
-                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }>+</TouchableOpacity>
-            </View>
-            )
-        }
-        
         return (
-        <View style={ styles.foodView }>
-          <TouchableOpacity style={ styles.allAvailable } onPress={ this.allAvailable.bind( this ) }>
-            <Text style={{color: 'white'}}>Make all available now</Text>
+        <View style={ styles.infoContainer }>
+          <TouchableOpacity style={ styles.availableAll } onPress={ this.allAvailable.bind( this ) }>
+            <Text style={[ {color: 'white', fontFamily: 'Avenir'}]}>Make all available now</Text>
           </TouchableOpacity>
             { this.state.items.length !== 0 && this.state.items.map(( item, index ) => {
                 return <FoodItemRestView
@@ -94,7 +82,7 @@ class RestaurantView extends React.Component {
                 />
             })}
             <TouchableOpacity style={ styles.addButtonRest } onPress={ this.addItem.bind( this ) }>
-              <Text style={{color: 'white'}}>+</Text>
+              <Text style={{color: 'white', fontFamily: 'Avenir'}}>+</Text>
             </TouchableOpacity>
         </View>
         )

@@ -23,7 +23,8 @@ class FoodView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      provider: ''
     }
   }
   alertMe(name, quantity, price, unit, itemId) {
@@ -69,7 +70,8 @@ class FoodView extends React.Component {
     .then((resp) => {
         console.log('RESP', resp.data.provider);
         this.setState({
-            items: resp.data.provider.forSale
+            items: resp.data.provider.forSale, provider: resp.data.provider
+
         }, () => {
             console.log("DONE");
             console.log("ITEMsss", this.state.items)
@@ -88,10 +90,10 @@ class FoodView extends React.Component {
         return (
           <View style={styles.foodView}>
            {this.state.items.map((item) => {
-             return <FoodItem name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
+             return <FoodItem key={item._id}itemId={item._id} alertMe={this.alertMe.bind(this)} name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
            })}
         </View>
-        ) 
+        )
     }
   }
 }

@@ -52,7 +52,10 @@ class RestaurantPreview extends React.Component {
 		return (
 			<ScrollView>
 			<Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
-			<Text style={styles.welcome}>Welcome {this.props.firstName} :)</Text>
+			<Text style={[styles.welcome, {fontFamily: 'Avenir'}]}>Welcome {this.props.navigation.state.params.firstName} :)</Text>
+			<TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile', {user: this.props.navigation.state.params.user})}>
+				<Text style={{fontFamily: 'Avenir'}}>{this.props.navigation.state.params.firstName}'s profile </Text>
+			</TouchableOpacity>
        {this.state.foodProviders && this.state.foodProviders.map((provider, index) => {
          return <View key={index} style={styles.container}>
 									<View style={styles.restaurant}>
@@ -62,9 +65,9 @@ class RestaurantPreview extends React.Component {
 										/>
 										<TouchableOpacity style={styles.infoContainer} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id})}>
 											<View style={styles.restContainer}>
-												<Text style={styles.title}>{provider.name}</Text>
-												<Text style={styles.description}>{provider.type}</Text>
-												<Text style={styles.address}>{provider.location}</Text>
+												<Text style={[styles.title, {fontFamily: 'Avenir'}]}>{provider.name}</Text>
+												<Text style={[styles.description, {fontFamily: 'Avenir'}]}>{provider.type}</Text>
+												<Text style={[styles.address, {fontFamily: 'Avenir'}]}>{provider.location}</Text>
 											</View>
 										</TouchableOpacity>
 									</View>

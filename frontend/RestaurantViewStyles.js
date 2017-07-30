@@ -5,11 +5,15 @@ const styles = StyleSheet.create({
   container: {
     //fontFamily: 'Avenir'
   },
+
   infoContainer: {
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     opacity: 0.9,
     paddingHorizontal: 15,
-    paddingVertical: 5
+    paddingVertical: 5,
+    display: 'flex',
+    alignItems: 'center',
+    width: win.width
   },
   image: {
     width: win.width,
@@ -39,7 +43,29 @@ const styles = StyleSheet.create({
     color: '#479F00',
     textAlign: 'center',
     fontWeight: 'bold'
-  }
+  },
+  availableAll: {
+    width: 180,
+    height: 40,
+    backgroundColor: '#4AC9BA',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  addButtonRest: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#4AC9BA',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10
+  },
 });
 
 export default styles;
