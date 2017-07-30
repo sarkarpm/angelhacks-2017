@@ -26,6 +26,7 @@ export default StackNavigator({
   },
   AllProviders: {
     screen: AllProviders,
+  },
   Home: {
     screen: RestaurantPreview
   },
@@ -35,4 +36,4 @@ export default StackNavigator({
   Ticket: {
   	screen: Ticket
   }
-}, {initialRouteName: 'Login'});
+}, {initialRouteName: 'Map'});
