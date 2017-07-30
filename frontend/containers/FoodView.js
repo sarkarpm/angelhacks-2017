@@ -39,8 +39,6 @@ class FoodView extends React.Component {
     })
   }
   render() {
-    // var items = [{name: 'eggs', quantity: 10, unit: 'eggs', price: '0.50'},
-    //              {name: 'soup', quantity: 20, unit: 'bowls', price: '1.00'}];
     return (
       <View style={styles.foodView}>
        {this.state.items.map((item, index) => {
