@@ -50,7 +50,21 @@ var foodProviderSchema = mongoose.Schema({
   forSale: [{
     type: mongoose.Schema.ObjectId,
     ref: 'Item'
-  }]
+  }],
+  imgURL: {
+    type: String,
+    required: false,
+    default: '../frontend/img/logo-placeholder.png'
+  },
+  description: {
+    type: String,
+    required: false
+  },
+  phone: {
+    type: String,
+    required: true
+  }
+
 });
 
 
