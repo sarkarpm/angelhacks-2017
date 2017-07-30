@@ -1,31 +1,35 @@
 import React from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  ListView,
-  Alert,
-  Button,
-  Dimensions,
-  AsyncStorage
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    TextInput,
+    ListView,
+    Alert,
+    Button,
+    Dimensions,
+    AsyncStorage
 } from 'react-native';
 import FoodItem from '../components/FoodItem';
 import styles from '../styles.js';
 import axios from 'axios';
 
 class FoodView extends React.Component {
-  static navigationOptions = {
-    title: 'Food View'
-  };
+    static navigationOptions = {
+        title: 'FoodView'
+    };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: []
+    constructor( props ) {
+        super( props );
+        this.state = {
+            items: []
+        }
     }
-  }
+
+    addToCart(item) {
+        this.props.navigation.navigate("Ticket", {item});
+    }
 
   componentDidMount() {
     console.log('NAVIGATION', this.props.navigation);
@@ -40,10 +44,15 @@ class FoodView extends React.Component {
   }
   render() {
     return (
-      <View style={styles.foodView}>
-       {this.state.items.map((item, index) => {
-         return <FoodItem key={index} name={item.name} quantity={item.quantity} unit={item.unit} price={item.price} />
-       })}
+      <View style={ styles.foodView }>
+          { this.state.items.map(( item, index ) => {
+              return <FoodItem
+                  key={ index }
+                  item={ item }
+                  admin={ false }
+                  function={ this.addToCart.bind(this) }
+              />
+          } ) }
       </View>
     )
   }
