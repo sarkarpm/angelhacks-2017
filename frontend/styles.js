@@ -11,8 +11,14 @@ const styles = StyleSheet.create({
     padding: 0
   },
   foodView: {
+    marginTop: 20,
+    marginBottom: 20,
+    display: 'flex',
+    width: win.width,
+    alignItems: 'center'
   },
   foodItem: {
+    width: win.width,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 5,
@@ -34,6 +40,55 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     top: 16
+  },
+  soldOutRest: {
+    height: 40,
+    width: 90,
+    backgroundColor: '#9e9e9e',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 40,
+    top: -2,
+    marginTop: 0,
+    paddingTop: 0
+  },
+  soldOutUser: {
+    height: 40,
+    width: 90,
+    backgroundColor: '#9e9e9e',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 19,
+    top: 7,
+    marginTop: 0,
+    paddingTop: 0
+  },
+  addButtonRest: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#4AC9BA',
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  inputField: {
+    height: 40,
+    width: win.width - 20,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 3,
+    marginTop: 5,
+    marginBottom: 5,
+    paddingLeft: 10
   }
 })
 
