@@ -9,7 +9,7 @@ import {
   Button,
   Dimensions
 } from 'react-native';
-import styles from '../styles.js';
+import styles from '../addItemStyles.js';
 import axios from 'axios';
 
 const win = Dimensions.get('window');
@@ -32,26 +32,11 @@ class AddItems extends React.Component {
   }
 
   componentDidMount() {
-    // axios.post('http://localhost:3000/providers/' + '597d6184452eaf28eaa797a2' + '/new-item', {
-    //   name: this.state.name,
-    //   quantity: this.state.quantity,
-    //   unit: this.state.unit,
-    //   price: this.state.price,
-    //   description: this.state.description,
-    //   store: '597d6184452eaf28eaa797a2'
-    // })
-    // .then((resp) => {
-    //   console.log('RESP', resp.data.response);
-    //   this.setState({items: resp.data.provider.forSale})
-    // })
-    // .catch((err) => {
-    //   console.log('error posting items to food provider page', err);
-    //})
   }
 
   onPressCancel(e) {
     e.preventDefault();
-    console.log('CANCELLED');
+    this.props.navigation.navigate('RestaurantView', {id: this.props.navigation.state.params.providerId});
   }
 
   onPressSubmit(e) {
@@ -67,6 +52,11 @@ class AddItems extends React.Component {
     .then((resp) => {
       console.log('RESP', resp.data.response);
       console.log('SUBMITTED');
+      Alert.alert(
+        'Added to your items',
+        'Users will now be able to grab that item at a discounted price.',
+        [{ text: 'Okay!' }] // Button
+      )
       this.props.navigation.navigate('RestaurantView', {id: this.props.navigation.state.params.providerId});
     })
     .catch((err) => {
@@ -76,7 +66,8 @@ class AddItems extends React.Component {
 
   render() {
     return (
-      <View style={styles.foodView}>
+      <View style={styles.container}>
+      <Text style={styles.title}>Add as Items Up for Grabs</Text>
         <TextInput
         style={styles.inputField}
         onChangeText={(name) => this.setState({name})}
@@ -107,17 +98,18 @@ class AddItems extends React.Component {
         placeholder="Item description"
         value={this.state.description}
         />
-        <Button
-        onPress={(e) => this.onPressCancel(e)}
-        title="Cancel"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-        />
-        <Button
-          onPress={(e) => this.onPressSubmit(e)}
+        <TouchableOpacity onPress={(e) => this.onPressCancel(e)}>
+        <View
+        style={styles.button}
+        ><Text>Cancel</Text></View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={(e) => this.onPressSubmit(e)}>
+        <View
+          style={styles.buttonOrange}
           title="Submit"
           color="#841584"
-        />
+        ><Text>Submit</Text></View>
+        </TouchableOpacity>
       </View>
     )
   }

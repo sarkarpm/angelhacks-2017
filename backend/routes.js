@@ -140,7 +140,7 @@ router.post( '/providers/:providerId/new-item', ( req, res ) => {
 } )
 
 router.get('/providers/:itemId/remove-item', (req, res) => {
-  console.log('taylor swift')
+  console.log('taylor swift', req.params.itemId)
   Item.findById(req.params.itemId, (err, item) => {
     if (err) {
       res.json({success: false, message: err});
@@ -149,7 +149,7 @@ router.get('/providers/:itemId/remove-item', (req, res) => {
       res.json({success: false, message: "No item found"});
     }
     else {
-      item.quantity = item.quantity - 1;
+      item.quantity = (parseInt(item.quantity - 1)).toString();
       item.save();
       res.json({success: true, item: item});
     }
