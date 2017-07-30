@@ -2,7 +2,8 @@ import React from 'react';
 import { MapView, Location } from 'expo';
 import {
     View,
-    Text
+    Text,
+    Button
 } from 'react-native';
 import axios from 'axios';
 
@@ -27,24 +28,23 @@ class MapScreen extends React.Component {
         .then(locationsArray => {
             console.log("RESPONSE", locationsArray);
             console.log("STATE", this.state);
-            return this.setState({
+            this.setState({
                 locations: locationsArray
             })
         })
         .then(res => {
-            console.log("HERE", this.state);
+            console.log("HERE", this.state.locations);
         })
         .catch(err => console.log("ERROR: ", err))
     }
 
     render() {
         if (this.state.locations.length === 0) {
-            return <Text>MAPPING</Text>
+            return <Text>Loading...</Text>
         }
         else {
             return (
                 <View>
-                    <Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
                     <MapView
                         style={ { flex: 1 } }
                         initialRegion={{
@@ -55,6 +55,7 @@ class MapScreen extends React.Component {
                         }}
                     >
                         {this.state.locations.map((loc) => {
+                            console.log(loc);
                             return <MapView.Marker
                                 coordinate={loc.geocode}
                                 title={loc.name}

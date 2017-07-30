@@ -12,7 +12,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import FoodItem from '../components/FoodItem';
-import styles from '../styles.js';
+import styles from '../restaurantsStyles.js';
 import axios from 'axios';
 
 var prov;
