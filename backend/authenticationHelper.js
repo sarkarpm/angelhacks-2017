@@ -11,6 +11,7 @@ function authenticationHelper( app ) {
             if (usr) {
                 res.json( {
                     success: true,
+                    user: usr,
                     userId: req.user._id,
                     firstName: usr.firstName,
                     lastName: usr.lastName
@@ -41,6 +42,7 @@ function authenticationHelper( app ) {
             password: req.body.password,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            orders: []
         } );
         usr.save();
         res.json( { success: true } );

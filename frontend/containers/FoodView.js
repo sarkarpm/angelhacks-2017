@@ -26,6 +26,43 @@ class FoodView extends React.Component {
       items: []
     }
   }
+  alertMe(name, quantity, price, unit, itemId) {
+    var provider = this.state.provider;
+    var userId = this.props.navigation.state.params.userId;
+    console.log('JUSTIN BIEBER', userId);
+    Alert.alert(
+      `Order: one ${name} from ${provider.name}`,
+      'Are you sure you want to place this order?',
+      [
+        {text: 'Cancel', onPress: () => console.log('Cancelled')},
+        {text: 'OK', onPress: () => {
+        axios.post('http://localhost:3000/newOrder', {
+              userId: userId,
+              provider: provider,
+              name: name,
+              quantity: 1,
+              price: price,
+              unit: unit
+        })
+        .then((resp) => {
+            console.log('DONE BITCHHHH1', resp)
+             return axios.get(('http://localhost:3000/providers/' + itemId + '/remove-item'), {
+                      itemId: itemId
+                    })
+        })
+        .then(resp1 => {
+            console.log('DONE BITCHHHH2', resp1)
+        })
+          .catch((err) => {
+            console.log('error getting items from food provider', err);
+          })
+          this.props.navigation.navigate('Ticket', {foodName: name, quantity: 1, price: price, units: unit, provider: provider})
+        }
+        },
+      ],
+      { cancelable: false }
+    )
+  }
 
   componentWillMount() {
     console.log('NAVIGATION', this.props.navigation);

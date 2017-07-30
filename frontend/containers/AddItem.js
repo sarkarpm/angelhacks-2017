@@ -56,17 +56,18 @@ class AddItems extends React.Component {
 
   onPressSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3000/providers/' + '597d6167452eaf28eaa797a1' + '/new-item', {
+    axios.post('http://localhost:3000/providers/' + this.props.navigation.state.params.providerId + '/new-item', {
       name: this.state.name,
       quantity: this.state.quantity,
       unit: this.state.unit,
       price: this.state.price,
       description: this.state.description,
-      store: '597d6184452eaf28eaa797a2'
+      store: this.props.navigation.state.params.providerId
     })
     .then((resp) => {
       console.log('RESP', resp.data.response);
       console.log('SUBMITTED');
+      this.props.navigation.navigate('RestaurantView', {id: this.props.navigation.state.params.providerId});
     })
     .catch((err) => {
       console.log('error posting items to food provider page', err);

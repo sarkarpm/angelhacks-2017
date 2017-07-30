@@ -6,7 +6,8 @@ var userSchema = mongoose.Schema( {
     password: String,
     firstName: String,
     lastName: String,
-    swipes: Number
+    swipes: Number,
+    orders: Array
 } );
 
 var itemSchema = mongoose.Schema({
@@ -75,6 +76,10 @@ var foodProviderSchema = mongoose.Schema( {
     phone: {
         type: String,
         required: true
+    },
+    availableNow: {
+      type: Boolean,
+      required: false
     }
 } );
 
