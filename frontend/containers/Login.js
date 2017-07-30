@@ -53,27 +53,27 @@ class LoginScreen extends React.Component {
     }
     render() {
         return (
-            <View style={ styles.container }>
-                <Text style={ styles.titleFont }>Welcome</Text>
+            <View style={ [styles.container] }>
+                <Text style={ [styles.titleFont, {fontFamily: 'Avenir', fontWeight: 'bold'}] }>Welcome</Text>
                 <TextInput
-                    style={ [styles.textInput] }
+                    style={ [styles.textInput, {fontFamily: 'Avenir'}] }
                     placeholder="Enter your username"
                     onChangeText={ ( text ) => this.setState( { username: text } ) }
                 />
                 <TextInput
-                    style={ [styles.textInput] }
+                    style={ [styles.textInput, {fontFamily: 'Avenir'}] }
                     secureTextEntry={ true }
                     placeholder="Enter your password"
                     onChangeText={ ( text ) => this.setState( { password: text } ) }
                 />
                 <TouchableOpacity style={ [styles.button, styles.button] } onPress={ () => this.loginUser( this.state.username, this.state.password ) }>
-                    <Text style={ styles.buttonLabel }>Login</Text>
+                    <Text style={ [styles.buttonLabel, {fontFamily: 'Avenir'}] }>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={ [styles.button, styles.button] } onPress={ () => this.props.navigation.navigate( 'Register', { admin: false } ) }>
-                    <Text style={ styles.buttonLabel }>Register User</Text>
+                    <Text style={ [styles.buttonLabel, {fontFamily: 'Avenir'}] }>Register User</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={ [styles.button, styles.button] } onPress={ () => this.props.navigation.navigate( 'Register', { admin: true } ) }>
-                    <Text style={ styles.buttonLabel }>Register Restaurant</Text>
+                    <Text style={ [styles.buttonLabel, {fontFamily: 'Avenir'}] }>Register Restaurant</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -89,9 +89,7 @@ const styles = StyleSheet.create( {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'stretch',
-        backgroundColor: '#FFFFFF',
-        fontFamily: 'Avenir',
-        fontWeight: 'bold'
+        backgroundColor: '#FFFFFF'
     },
     welcome: {
         fontSize: 20,
@@ -151,12 +149,12 @@ const styles = StyleSheet.create( {
         padding: 15
     },
     fontHeader: {
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
         fontSize: 20
     },
     fontMessage: {
         fontSize: 26,
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
         color: '#7FDBD3'
     }
 } );

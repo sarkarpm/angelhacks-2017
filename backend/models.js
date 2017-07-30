@@ -66,7 +66,7 @@ var foodProviderSchema = mongoose.Schema( {
     imgURL: {
         type: String,
         required: false,
-        default: '../frontend/img/logo-placeholder.png'
+        default: 'http://one-call.ca/wp-content/uploads/2013/08/logo.png'
     },
     description: {
         type: String,

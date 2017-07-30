@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
-  Button
+  Button,
+  Dimensions
 } from 'react-native';
 import styles from '../styles.js';
 import axios from 'axios';
+
+const win = Dimensions.get('window');
 
 class AddItems extends React.Component {
   static navigationOptions = {
@@ -20,7 +23,7 @@ class AddItems extends React.Component {
     super(props);
     this.state = {
       name: '',
-      quantity: 0,
+      quantity: '',
       unit: '',
       price: '',
       description: '',
@@ -28,7 +31,7 @@ class AddItems extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // axios.post('http://localhost:3000/providers/' + '597d6184452eaf28eaa797a2' + '/new-item', {
     //   name: this.state.name,
     //   quantity: this.state.quantity,
@@ -74,31 +77,31 @@ class AddItems extends React.Component {
     return (
       <View style={styles.foodView}>
         <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={styles.inputField}
         onChangeText={(name) => this.setState({name})}
         placeholder="Item name"
         value={this.state.name}
         />
         <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={styles.inputField}
         onChangeText={(quantity) => this.setState({quantity})}
         placeholder="Quantity"
         value={this.state.quantity}
         />
         <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={styles.inputField}
         onChangeText={(unit) => this.setState({unit})}
         placeholder="Unit"
         value={this.state.unit}
         />
         <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={styles.inputField}
         onChangeText={(price) => this.setState({price})}
         placeholder="Price per unit"
         value={this.state.price}
         />
         <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={styles.inputField}
         onChangeText={(description) => this.setState({description})}
         placeholder="Item description"
         value={this.state.description}

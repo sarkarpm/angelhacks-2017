@@ -11,7 +11,7 @@ import {
     Dimensions,
     AsyncStorage
 } from 'react-native';
-import FoodItem from '../components/FoodItem';
+import FoodItemRestView from '../components/FoodItemRestView';
 import styles from '../styles.js';
 import axios from 'axios';
 
@@ -52,26 +52,30 @@ class RestaurantView extends React.Component {
             } );
     }
     render() {
-            if (this.state.items.length === 0) {
-              return <Text>No Items</Text>
-            }
-            return (
-            <View style={ styles.foodView }>
-                { this.state.items.length !== 0 && this.state.items.map(( item, index ) => {
-                    return <FoodItem
-                        key={ index }
-                        name={item.name}
-                        quantity={item.quantity}
-                        price={item.price}
-                        unit={item.unit}
-                        admin={ true }
-                        function={ this.deleteItem.bind( this ) }
-                    />
-                } ) }
-                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }><Text>+</Text></TouchableOpacity>
-            </View>
-            )
-
+        if (this.state.items.length === 0) {
+          return (<View>
+            <Text>No Items</Text>
+            <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }><Text>+</Text></TouchableOpacity>
+          </View>)
+        }
+        return (
+        <View style={ styles.foodView }>
+            { this.state.items.length !== 0 && this.state.items.map(( item, index ) => {
+                return <FoodItemRestView
+                    key={ index }
+                    name={item.name}
+                    quantity={item.quantity}
+                    price={item.price}
+                    unit={item.unit}
+                    admin={ true }
+                    function={ this.deleteItem.bind( this ) }
+                />
+            })}
+            <TouchableOpacity style={ styles.addButtonRest } onPress={ this.addItem.bind( this ) }>
+              <Text style={{color: 'white'}}>+</Text>
+            </TouchableOpacity>
+        </View>
+        )
     }
 }
 

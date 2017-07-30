@@ -40,13 +40,13 @@ class RestaurantPreview extends React.Component {
 				console.log('RESP w providers', resp.data.providers)
 				this.setState({foodProviders: resp.data.providers});
 			}
-			
+
 		})
 		.catch(err => {
 			console.log('priyasarkarerr')
 			console.log('ERR', err)
 		})
-	}	
+	}
 
 	render() {
 		return (
@@ -54,12 +54,12 @@ class RestaurantPreview extends React.Component {
 			<Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
 			<Text style={styles.welcome}>Welcome {this.props.navigation.state.params.firstName}! :)</Text>
        {this.state.foodProviders && this.state.foodProviders.map((provider, index) => {
-         return <View style={styles.container}>
-				<View style={styles.restaurant}>			
+         return <View key={index} style={styles.container}>
+				<View style={styles.restaurant}>
 					<Image
 						style={styles.image}
 						source={{uri: provider.imgURL}}
-					/> 
+					/>
 					<View style={styles.restContainer}>
 						<Text style={styles.title}>{provider.name}</Text>
 						<Text style={styles.description}> {provider.type} </Text>
@@ -71,8 +71,8 @@ class RestaurantPreview extends React.Component {
 				</View>
 			</View>
        })}
-     
-			
+
+
 			</ScrollView>
 			)
 	}
