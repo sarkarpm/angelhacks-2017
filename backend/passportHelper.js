@@ -1,6 +1,7 @@
 var passport = require( 'passport' );
 var LocalStrategy = require( 'passport-local' );
 var User = require( './models' ).User;
+var FoodProvider = require('./models').FoodProvider;
 
 function passportHelper( app ){
     passport.serializeUser( function ( user, done ) {
@@ -25,19 +26,38 @@ function passportHelper( app ){
                 //console.log( err );
                 return done( err );
             }
-          // if no user present, auth failed
-            if ( !user ) {
-                //console.log( user );
-                return done( null, false, { message: 'Incorrect username.' } );
-            }
-          // if passwords do not match, auth failed
-            if ( user.password !== password ) {
+            // if passwords do not match, auth failed
+            else if ( user && user.password !== password ) {
                 //console.log( "wrongpassword", user );
                 return done( null, false, { message: 'Incorrect password.' } );
             }
+            else if (user && user.password === password) {
+                return done( null, user );
+            }
+            else if (!user) {
+                FoodProvider.findOne({username: username}, function(err, foodprovider) {
+                    if (err) {
+                        console.log("1", err);
+                        return done(err);
+                    }
+                    else if (!foodprovider) {
+                        console.log("2");
+                        return done( null, false, { message: 'Incorrect username.' } );
+                    }
+                    else if (foodprovider.password !== password) {
+                        console.log("3");
+                        return done( null, false, { message: 'Incorrect password.' } );
+                    }
+                    else {
+                        console.log("4");
+                        return done( null, foodprovider );
+                    }
+                })
+            }
+          
             //console.log( "rightone", user );
           // auth has has succeeded
-            return done( null, user );
+            
         } );
     }
   ) );

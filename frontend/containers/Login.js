@@ -26,27 +26,30 @@ class LoginScreen extends React.Component {
         }
     }
     loginUser( username, password ) {
+        console.log("USR", username);
+        console.log("USR", password);
+
         axios.post( 'http://localhost:3000/login', {
-            username: username,
-            password: password
+            username: this.state.username,
+            password: this.state.password
         } )
-            .then( response => {
-                console.log("RESPONSE", response);
-                if (response.data.firstName) {
-                    this.props.navigation.navigate('Home', {firstName: response.data.firstName, lastName: response.data.lastName} );
-                }
-                else {
-                    this.props.navigation.navigate('RestaurantView', {name: response.data.name});
-                }
-            } )
-            
-            .catch( err => {
-                Alert.alert(
-                    'Invalid Login',
-                    'Your username or password is incorrect. Register or try again',
-                    [{ text: 'Dismiss Button' }] // Button
-                )
-            } );
+        .then( response => {
+            console.log("RESPONSE", response);
+            if (! response.data.firstName) {
+                console.log("SUCCESS");
+                this.props.navigation.navigate('RestaurantView', {name: response.data.name, id: response.data._id});
+            }
+            else {
+                this.props.navigation.navigate('Home', {firstName: response.data.firstName, lastName: response.data.lastName} );
+            }
+        } )
+        .catch( err => {
+            Alert.alert(
+                'Invalid Login',
+                'Your username or password is incorrect. Register or try again',
+                [{ text: 'Dismiss Button' }] // Button
+            )
+        } );
     }
     render() {
         return (

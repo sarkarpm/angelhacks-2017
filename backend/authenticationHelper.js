@@ -5,6 +5,7 @@ var FoodProvider = require( './models' ).FoodProvider;
 function authenticationHelper( app ) {
     //redirect to documents pages
     app.post( '/login', passport.authenticate( 'local' ), function ( req, res ) {
+        console.log(req.body.username, "USERNAME");
         User.findOne({username: req.body.username}, function(err, usr) {
             console.log('USER', usr);
             if (usr) {
@@ -15,8 +16,18 @@ function authenticationHelper( app ) {
                     lastName: usr.lastName 
                 } );
             }
+            else if (err) {
+                console.log('Error: ', err)
+            }
             else {
                 FoodProvider.findOne({username: req.body.username}, function(err, foodprovider) {
+                    console.log("PROVIDER", foodprovider);
+                    console.log("BODY", req.foodprovider);
+                    console.log("BODY2", req.user);
+                    if (err) {
+                        console.log("Error provider: ", err)
+                    }
+                    console.log("Provider provided")
                     res.json( { 
                         success: true, 
                         userId: req.user._id, 
@@ -25,7 +36,6 @@ function authenticationHelper( app ) {
                 })
             }
         })
-        
     } );
 
     app.post( '/register', function ( req, res ) {

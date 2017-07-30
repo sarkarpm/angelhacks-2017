@@ -28,7 +28,7 @@ class AddItems extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // axios.post('http://localhost:3000/providers/' + '597d6184452eaf28eaa797a2' + '/new-item', {
     //   name: this.state.name,
     //   quantity: this.state.quantity,
