@@ -18,11 +18,25 @@ router.get( '/providers', ( req, res ) => {
     } )
 } )
 
+router.post('/geocode', (req, res) => {
+    console.log("GEO", req.body.geocode);
+    FoodProvider.findById(req.body.providerid, (err, provider) => {
+        console.log(provider);
+        provider.geocode = req.body.geocode;
+        console.log(req.body.geocode);
+        provider.save((err, response) => {
+            res.json({success: true})
+        })
+        .catch(err => res.json({success: false}))
+    })
+})
+
 router.post( '/providers', ( req, res ) => {
     var newProvider = new FoodProvider( {
         name: req.body.name,
         location: req.body.location,
-        type: req.body.type
+        type: req.body.type,
+        geocode: req.body.geocode
     } );
     newProvider.save(( err, providers ) => {
         if ( err ) {

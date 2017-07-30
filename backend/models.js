@@ -20,6 +20,9 @@ var foodProviderSchema = mongoose.Schema ({
   type: {
     type: String,
     required: true
+  },
+  geocode: {
+    type: Object
   }
 });
 
