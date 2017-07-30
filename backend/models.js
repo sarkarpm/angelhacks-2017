@@ -8,7 +8,28 @@ var userSchema = mongoose.Schema( {
   lastName: String
 } );
 
-var foodProviderSchema = mongoose.Schema ({
+var itemSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  quantity: {
+    type: Number,
+    required: true
+  },
+  unit: {
+    type: Number
+  },
+  price: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String
+  }
+})
+
+var foodProviderSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -20,13 +41,20 @@ var foodProviderSchema = mongoose.Schema ({
   type: {
     type: String,
     required: true
-  }
+  },
+  forSale: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Item'
+  }]
 });
 
+
 var User = mongoose.model( 'User', userSchema );
+var Item = mongoose.model('Item', itemSchema);
 var FoodProvider = mongoose.model('FoodProvider', foodProviderSchema);
 
 module.exports = {
     User: User,
-    FoodProvider: FoodProvider
+    Item: Item,
+    FoodProvider: FoodProvider,,
 };

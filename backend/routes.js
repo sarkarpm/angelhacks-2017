@@ -3,6 +3,7 @@ const router = express.Router();
 var models = require('./models');
 var User = models.User;
 var FoodProvider = models.FoodProvider;
+var Item = models.Item;
 
 router.get('/providers', (req, res) => {
   FoodProvider.find({}, (err, providers) => {
@@ -44,7 +45,39 @@ router.get('/providers/:providerId', (req, res) => {
       res.json({success: false, message: "No provider found"});
     }
     else {
-        res.json({success: true, provider: provider});
+      res.json({success: true, provider: provider});
+    }
+  })
+})
+
+router.get('/items', (req, res) => {
+  Item.find({}, (err, items) {
+    if (err) {
+      res.json({success: false, message: err});
+    }
+    else if (!items) {
+      res.json({success: false, message: "No items found"});
+    }
+    else {
+      res.json({success: true, items: items});
+    }
+  })
+})
+
+router.post('/items/new', (req, res) => {
+  var newItem = new Item({
+    name: req.body.name,
+    quantity: req.body.quantity,
+    unit: req.body,unit,
+    price: req.body.price,
+    description: req.body.description
+  })
+  newItem.save((err, item) => {
+    if (err) {
+      res.json({success: false, message: err});
+    }
+    else {
+      res.json({success: true, item: item});
     }
   })
 })
