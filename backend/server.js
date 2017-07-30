@@ -1,3 +1,4 @@
+var routes = require('./routes');
 const express = require( 'express' );
 var bodyParser = require( 'body-parser' );
 const app = express();
