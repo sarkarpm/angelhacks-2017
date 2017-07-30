@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         width: win.width,
-        height: 40,
+        height: 60,
         backgroundColor: 'white',
         paddingVertical: 15,
         paddingHorizontal: 15,
