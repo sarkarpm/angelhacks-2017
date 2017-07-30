@@ -38,7 +38,10 @@ class RestaurantPreview extends React.Component {
 			console.log('priyasarkar')
 			if(resp.data.success){
 				console.log('RESP w providers', resp.data.providers)
-				this.setState({foodProviders: resp.data.providers});
+				this.setState({foodProviders: resp.data.providers}, () => {
+					console.log("SUCCESS", this.state.foodProviders)
+				});
+				console.log(this.state.foodProviders)
 			}
 
 		})
@@ -49,6 +52,12 @@ class RestaurantPreview extends React.Component {
 	}
 
 	render() {
+		if (this.state.foodProviders.length === 0) {
+			return (
+				<Text>Loading...</Text>
+			)
+		}
+		else{
 		return (
 			<ScrollView>
 			<Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
@@ -63,19 +72,21 @@ class RestaurantPreview extends React.Component {
 											style={styles.image}
 											source={{uri: provider.imgURL}}
 										/>
-										<TouchableOpacity style={styles.infoContainer} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id})}>
+										<TouchableOpacity style={styles.infoContainer} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id, userId: this.props.navigation.state.params.userId})}>
 											<View style={styles.restContainer}>
 												<Text style={[styles.title, {fontFamily: 'Avenir'}]}>{provider.name}</Text>
 												<Text style={[styles.description, {fontFamily: 'Avenir'}]}>{provider.type}</Text>
 												<Text style={[styles.address, {fontFamily: 'Avenir'}]}>{provider.location}</Text>
 											</View>
 										</TouchableOpacity>
+										<Text> Available from: {provider.intervalAvailable[0] ?  provider.intervalAvailable[0]: "2017-07-30 15:00:00"} until {provider.intervalAvailable[1] ? provider.intervalAvailable[1] : "2017-07-30 17:00:00"}</Text>
+
 									</View>
-						<Text> Available from: {provider.availableInterval[0].start} until {provider.availableInterval[1].end}</Text>
 				</View>
        })}
 			</ScrollView>
 			)
+	}
 	}
 }
 

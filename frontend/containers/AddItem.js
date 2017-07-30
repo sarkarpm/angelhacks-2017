@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
+  Alert,
   Button,
   Dimensions
 } from 'react-native';
@@ -55,9 +56,9 @@ class AddItems extends React.Component {
       Alert.alert(
         'Added to your items',
         'Users will now be able to grab that item at a discounted price.',
-        [{ text: 'Okay!' }] // Button
+        [{ text: 'Okay!', onPress: () => this.props.navigation.navigate('RestaurantView', {id: this.props.navigation.state.params.providerId}) }] // Button
       )
-      this.props.navigation.navigate('RestaurantView', {id: this.props.navigation.state.params.providerId});
+      
     })
     .catch((err) => {
       console.log('error posting items to food provider page', err);

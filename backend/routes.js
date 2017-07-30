@@ -28,7 +28,7 @@ router.post( '/providers', ( req, res ) => {
         phone: req.body.phone,
         geocode: req.body.geocode,
         type: req.body.type,
-        intervalAvailable: [{start: req.body.start}, {end: req.body.end}]
+        intervalAvailable: [req.body.start,  req.body.end]
     } )
     newProvider.save(( err, providers ) => {
         if ( err ) {
@@ -81,6 +81,7 @@ router.post('/newOrder', ( req, res ) => {
             res.json( { success: false, message: "No user found" } );
         }
         else {
+            console.log('MINH TO')
             user.orders.push({name: req.body.name,
               quantity: req.body.quantity,
               price: req.body.price,
@@ -150,8 +151,10 @@ router.get('/providers/:itemId/remove-item', (req, res) => {
       res.json({success: false, message: "No item found"});
     }
     else {
+     console.log('POROPEPOGE')
       item.quantity = (parseInt(item.quantity - 1)).toString();
-      item.save();
+      item.save((err) => console.log('updating', err));
+      console.log(item);
       res.json({success: true, item: item});
     }
   })
