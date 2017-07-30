@@ -1,12 +1,9 @@
 import React from 'react';
-
 import HomeScreen from './frontend/containers/UserHome'
-
-
 import { StackNavigator } from 'react-navigation';
 import LoginScreen from './frontend/containers/Login';
 import RegisterScreen from './frontend/containers/Register';
-// import RestaurantPreview from './frontend/containers/';
+import RestaurantPreview from './frontend/containers/UserHome';
 
 export default StackNavigator({
   Login: {
@@ -14,9 +11,9 @@ export default StackNavigator({
   },
   Register: {
     screen: RegisterScreen
+  },
+  Home: {
+    screen: RestaurantPreview
   }
-  // Home: {
-  //   screen: RestaurantPreview
-  // }
 }, {initialRouteName: 'Login'});
 
