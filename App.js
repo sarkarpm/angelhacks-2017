@@ -8,7 +8,6 @@ import LoginScreen from './frontend/containers/Login';
 import RegisterScreen from './frontend/containers/Register';
 import MapScreen from './frontend/containers/MapView';
 import FoodView from './frontend/containers/FoodView';
-import AllProviders from './frontend/containers/AllProviders';
 import RestaurantPreview from './frontend/containers/UserHome';
 
 import Ticket from './frontend/containers/Ticket';
@@ -23,9 +22,6 @@ export default StackNavigator({
   },
   FoodView: {
     screen: FoodView
-  },
-  AllProviders: {
-    screen: AllProviders,
   },
   Home: {
     screen: RestaurantPreview
