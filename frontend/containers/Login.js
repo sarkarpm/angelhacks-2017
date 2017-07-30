@@ -1,14 +1,15 @@
 import React from 'react';
 import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    TextInput,
-    ListView,
-    Alert,
-    Button,
-    AsyncStorage
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  ListView,
+  Alert,
+  Button,
+  AsyncStorage,
+  ActivityIndicator
 } from 'react-native';
 import axios from 'axios';
 
