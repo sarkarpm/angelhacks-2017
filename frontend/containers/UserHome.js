@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import SearchBar from 'react-native-searchbar'
 import styles from '../homeStyles.js';
+import axios from 'axios';
 
 const items = [
 1337,
@@ -22,6 +23,22 @@ class RestaurantPreview extends React.Component {
 	constructor(props) {
 		super(props);
 	}
+
+	componentDidMount(){
+		console.log('POOPIE')
+		axios.get('http://localhost:3000/providers')
+		.then(resp => {
+			console.log('priyasarkar')
+			if(resp.data.success){
+				console.log('RESP w providers', resp.data.providers)
+			}
+			
+		})
+		.catch(err => {
+			console.log('priyasarkarerr')
+			console.log('ERR', err)
+		})
+	}	
 
 	render() {
 		return (

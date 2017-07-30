@@ -6,6 +6,7 @@ var FoodProvider = models.FoodProvider;
 var Item = models.Item;
 
 router.get('/providers', (req, res) => {
+  console.log('REACHED PROVIDERS GET')
   FoodProvider.find({}, (err, providers) => {
     if (err) {
       res.json({success: false, message: err});

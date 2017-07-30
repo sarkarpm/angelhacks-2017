@@ -32,7 +32,7 @@ class LoginScreen extends React.Component {
         password: password
     })
     .then(response => {
-      console.log("Login response: ", response.data);
+      //console.log("Login response: ", response.data);
       this.setState({firstName: response.data.firstName});
       this.setState({lastName: response.data.lastName});
       return AsyncStorage.setItem('user', JSON.stringify({
