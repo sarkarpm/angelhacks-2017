@@ -21,32 +21,12 @@ const items = [
 class RestaurantPreview extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			items,
-			results: []
-		};
-		this._handleResults = this._handleResults.bind(this);
-	}
-
-	_handleResults(results) {
-		this.setState({ results });
 	}
 
 	render() {
 		return (
 			<ScrollView>
-			<View style={{marginBottom: 100, marginTop: 100}}>
-			{
-				this.state.results.map((result, i) => {
-					return (
-						<Text key={i}>
-						{typeof result === 'object' && !(result instanceof Array) ? 'gold object!' : result.toString()}
-						</Text>
-						);
-				})
-			}
-			
-			</View>
+			<Text style={styles.welcome}>Welcome {this.props.navigation.state.params.firstName}! :)</Text>
 			<View style={styles.container}>
 				<View style={styles.restaurant}>			
 					<Image
