@@ -40,9 +40,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF9F9'
   },
   welcome: {
-    fontSize: 10,
+    fontSize: 30,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
+    fontWeight: 'bold'
   },
   instructions: {
     textAlign: 'center',

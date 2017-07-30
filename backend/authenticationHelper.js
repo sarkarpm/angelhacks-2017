@@ -4,7 +4,6 @@ var User = require( './models' ).User;
 function authenticationHelper( app ) {
     //redirect to documents pages
     app.post( '/login', passport.authenticate( 'local' ), function ( req, res ) {
-        console.log('username', req.body.username)
         User.findOne({username: req.body.username}, function(err, usr){
             console.log('USER', usr);
             res.json( { 

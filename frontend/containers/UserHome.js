@@ -21,21 +21,12 @@ const items = [
 class RestaurantPreview extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			items,
-			results: []
-		};
-		this._handleResults = this._handleResults.bind(this);
-	}
-
-	_handleResults(results) {
-		this.setState({ results });
 	}
 
 	render() {
 		return (
 			<ScrollView>
-			<Text>{this.props.navigation.state.params.firstName}</Text>
+			<Text style={styles.welcome}>Welcome {this.props.navigation.state.params.firstName}! :)</Text>
 			<View style={styles.container}>
 				<View style={styles.restaurant}>			
 					<Image
