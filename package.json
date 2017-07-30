@@ -5,10 +5,12 @@
   "author": null,
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
-  "script": {
-    "start": "nodemon ./backend/server.js"
+  "scripts": {
+    "start": "node ./backend/server.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
     "expo": "^19.0.0",
     "express": "^4.15.3",
     "mongoose": "^4.11.4",
