@@ -5,14 +5,25 @@ var FoodProvider = require( './models' ).FoodProvider;
 function authenticationHelper( app ) {
     //redirect to documents pages
     app.post( '/login', passport.authenticate( 'local' ), function ( req, res ) {
-        User.findOne({username: req.body.username}, function(err, usr){
+        User.findOne({username: req.body.username}, function(err, usr) {
             console.log('USER', usr);
-            res.json( { 
-                success: true, 
-                userId: req.user._id, 
-                firstName: usr.firstName, 
-                lastName: usr.lastName 
-            } );
+            if (usr) {
+                res.json( { 
+                    success: true, 
+                    userId: req.user._id, 
+                    firstName: usr.firstName, 
+                    lastName: usr.lastName 
+                } );
+            }
+            else {
+                FoodProvider.findOne({username: req.body.username}, function(err, foodprovider) {
+                    res.json( { 
+                        success: true, 
+                        userId: req.user._id, 
+                        name: foodprovider.name
+                    } );
+                })
+            }
         })
         
     } );

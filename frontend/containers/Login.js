@@ -31,9 +31,15 @@ class LoginScreen extends React.Component {
             password: password
         } )
             .then( response => {
-                console.log( "Login response: ", response );
+                console.log("RESPONSE", response);
+                if (response.data.firstName) {
+                    this.props.navigation.navigate('Home', {firstName: response.data.firstName, lastName: response.data.lastName} );
+                }
+                else {
+                    this.props.navigation.navigate('RestaurantView', {name: response.data.name});
+                }
             } )
-            .then(() => this.props.navigation.navigate( 'Home' ) )
+            
             .catch( err => {
                 Alert.alert(
                     'Invalid Login',
