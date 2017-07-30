@@ -70,7 +70,7 @@ class RegisterScreen extends React.Component {
                         location: location,
                         type: 'restaurant',
                         phone: phone,
-                        geocode: geocode
+                        geocode: geocode[0]
                     } )
                 } )
                 .then( response => {

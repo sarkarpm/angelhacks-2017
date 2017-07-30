@@ -11,7 +11,7 @@ import {
     Dimensions,
     AsyncStorage
 } from 'react-native';
-import FoodItemRestView from '../components/FoodItemRestView';
+import FoodItem from '../components/FoodItem';
 import styles from '../styles.js';
 import axios from 'axios';
 
@@ -43,25 +43,38 @@ class RestaurantView extends React.Component {
     }
 
     componentWillMount() {
-      console.log('PROVIDER ID 2', this.props.navigation.state.params.id);
-        axios.get( 'http://localhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
+        axios.get( 'http://locolhost:3000/providers/' + this.props.navigation.state.params.id + '/items' )
             .then(( resp ) => {
               console.log("HERE FiRST", this.state);
                 this.setState( { items: resp.data.provider.forSale }, () => {
-                  console.log("HERE", this.state);
+                    console.log("STATE: ", this.state)
                 })
-            })
+            } )
             .catch(( err ) => {
                 console.log( 'error getting items from food provider', err );
             } );
     }
     render() {
         if (this.state.items.length === 0) {
-          return (<View>
-            <Text>No Items</Text>
-            <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }><Text>+</Text></TouchableOpacity>
-          </View>)
+            return <Text>Loading...</Text>
         }
+        else {
+            console.log("STATE LOADED," ,this.state);
+            return (
+            <View style={ styles.foodView }>
+                { this.state.items.map(( item, index ) => {
+                    return <FoodItem
+                        key={ index }
+                        item={ item }
+                        admin={ true }
+                        function={ this.deleteItem.bind( this ) }
+                    />
+                } ) }
+                <TouchableOpacity style={ styles.addButton } onPress={ this.addItem.bind( this ) }>+</TouchableOpacity>
+            </View>
+            )
+        }
+        
         return (
         <View style={ styles.foodView }>
           <TouchableOpacity style={ styles.allAvailable } onPress={ this.allAvailable.bind( this ) }>

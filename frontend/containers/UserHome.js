@@ -52,31 +52,24 @@ class RestaurantPreview extends React.Component {
 		return (
 			<ScrollView>
 			<Button title="View Map" onPress={() => this.props.navigation.navigate('Map')} />
-			<TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile', {user: this.props.navigation.state.params.user})}>
-				<Text>{this.props.navigation.state.params.firstName}'s profile </Text>
-			</TouchableOpacity>
-			<Text style={styles.welcome}>Welcome {this.props.navigation.state.params.firstName}! :)</Text>
+			<Text style={styles.welcome}>Welcome {this.props.firstName} :)</Text>
        {this.state.foodProviders && this.state.foodProviders.map((provider, index) => {
          return <View key={index} style={styles.container}>
-				<View style={styles.restaurant}>
-					<Image
-						style={styles.image}
-						source={{uri: provider.imgURL}}
-					/>
-					<View style={styles.restContainer}>
-						<Text style={styles.title}>{provider.name}</Text>
-						<Text style={styles.description}>{provider.type}</Text>
-						<Text style={styles.address}>{provider.location}</Text>
-						<Text style={styles.address}>{provider.description}</Text>
-					</View>
-					<TouchableOpacity style={styles.buttonBlue} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id, userId: this.props.navigation.state.params.userId})}>
-						<Text style={{textAlign: 'center'}}> View Profile</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+									<View style={styles.restaurant}>
+										<Image
+											style={styles.image}
+											source={{uri: provider.imgURL}}
+										/>
+										<TouchableOpacity style={styles.infoContainer} onPress={() => this.props.navigation.navigate('FoodView', {providerId: provider._id})}>
+											<View style={styles.restContainer}>
+												<Text style={styles.title}>{provider.name}</Text>
+												<Text style={styles.description}>{provider.type}</Text>
+												<Text style={styles.address}>{provider.location}</Text>
+											</View>
+										</TouchableOpacity>
+									</View>
+								</View>
        })}
-
-
 			</ScrollView>
 			)
 	}
